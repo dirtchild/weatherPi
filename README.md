@@ -7,5 +7,5 @@ The code should be relatively well documented. Main purpuse is to:
 
 1. Read all attached sensors
 1. Send to weather underground
-1. Send to remote databa for custom display
+1. Send to remote database for custom display
 
