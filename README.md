@@ -5,9 +5,9 @@ This is the software behind the second prototype of a personal weather station b
 The code should be relatively well documented and easy to follow. The main funciton is to:
 
 1. Read all attached sensors
-1. Send the gathered data t
-  1. weather underground
-  1. a remote database (I use this to generate a basic current conditions page).
+1. Send the gathered data to
+  1. weather underground 
+  1. a remote database (I use this to generate a basic current conditions page). 
 
 The project uses a base object for data storage/passing - SensorData. The physical sensors used in this project are, in no particular order:
 
