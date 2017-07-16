@@ -6,8 +6,8 @@ The code should be relatively well documented and easy to follow. The main funci
 
 1. Read all attached sensors
 1. Send the gathered data to
-  1. weather underground 
-  1. a remote database (I use this to generate a basic current conditions page). 
+  * weather underground 
+  * a remote database (I use this to generate a basic current conditions page). 
 
 The project uses a base object for data storage/passing - SensorData. The physical sensors used in this project are, in no particular order:
 
