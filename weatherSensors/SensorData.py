@@ -3,22 +3,16 @@
 ########################################################################
 ## This file defines an atomic type for passing weather data
 ##
-## * name: the title - UID for thsi measurement
-## * value: the reading
-## * unit: what we are measuring 
+## * label (string): the title - UID for this measurement
+## * value (int): the reading
+## * unit (string): what we are measuring 
 ##
 ## CREATED: 
 ## MODIFIED: see https://github.com/dirtchild/weatherPi
 ##
 
-########################################################################
-# imports
-
-########################################################################
-# config
-
-########################################################################
-# functions
-
-########################################################################
-# MAIN
+class SensorData:
+    def __init__(self, label, value, unit):
+	    self.label = label
+		self.value = value
+		self.unit = unit
