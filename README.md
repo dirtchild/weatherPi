@@ -20,5 +20,6 @@ The hardware used in this project, in no particular order:
 * [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
 * [Raspberry pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Solar Powered Clip Fan](https://images-na.ssl-images-amazon.com/images/I/51NwW1oJ6fL._SY355_.jpg) - ripped apart and mounted into the housing cowel
+* [some snaps of the housing](http://imgur.com/a/hO6tJ) to get an idea of how it's setup
 
 Note that there are two temperature sensors in use here. These are enclosed with the PCB/rest of the internals. Although there is a fan and all endeavours have been made to normalise the temperature inside the casing (airflow, painted white, fan etc), both readings are used at the same time and then normalised against the CPU temperature to try and get an actual air temperature. Various design diagrams are in the DesignDocs directory, they may help someone.
