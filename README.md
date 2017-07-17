@@ -19,4 +19,4 @@ The project uses a base object for data storage/passing - SensorData. The physic
 * Generic temperature Humidity sensor - from a bulk lot of sensors
 * [12 Bit I2C 4 Channel ADS1015 Module ADC](https://www.adafruit.com/product/1083)
 
-Note that there are two temperature sensors in pay here. These are enclosed with the PCB/rest of the internals. Although there is a fan and all endeavours have been made to normalise the temperature inside the casing (airflow, painted white, fan etc), both readings are used at the same time and then normalised against the CPU temperature to try and get an actual air temperature. Various design diagrams are in the DesignDocs directory, they may help someone.
+Note that there are two temperature sensors in use here. These are enclosed with the PCB/rest of the internals. Although there is a fan and all endeavours have been made to normalise the temperature inside the casing (airflow, painted white, fan etc), both readings are used at the same time and then normalised against the CPU temperature to try and get an actual air temperature. Various design diagrams are in the DesignDocs directory, they may help someone.
