@@ -14,9 +14,9 @@ The project uses a base object for data storage/passing - SensorData. The physic
 * [Wind Speed](https://www.amazon.co.uk/dp/B00FQGV78C/ref=pe_3187911_189395841_TE_3p_dp_2) (generic spare part)
 * [Wind Direction](https://www.amazon.co.uk/dp/B00FQGV8RM/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
-* [Adafruit SI1145](https://www.adafruit.com/product/1777) UV sensor
+* [Adafruit SI1145](https://www.adafruit.com/product/1777) i2C UV sensor
 * [Adafruit MPL3115A2](https://www.adafruit.com/product/1893) Barometric Pressure/Altitude/Temperature
 * Generic temperature Humidity sensor - from a bulk lot of sensors
-* [12 Bit I2C 4 Channel ADS1015 Module ADC](https://www.adafruit.com/product/1083)
+* [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
 
 Note that there are two temperature sensors in use here. These are enclosed with the PCB/rest of the internals. Although there is a fan and all endeavours have been made to normalise the temperature inside the casing (airflow, painted white, fan etc), both readings are used at the same time and then normalised against the CPU temperature to try and get an actual air temperature. Various design diagrams are in the DesignDocs directory, they may help someone.
