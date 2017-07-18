@@ -8,17 +8,11 @@
 import Adafruit_DHT
 import SensorData.SensorReading
 
-class DHT11:
+def getDHT11():
 	# pin the dht is connected to
 	gpio = 23
 
-	def getData():
-		# grab it
-		hum, tem = Adafruit_DHT.read_retry(11, self.gpio)
-		# create our data returns
-		# F: sensor, label, value, unit
-		dhtHum = SensorReading("dht11", "humidity", hum, "%")
-		dhtTem = SensorReading("dht11", "temperature", tem, "f")
-		# return them
-
-		return (dhtTem,dhtHum)
+	hum, tem = Adafruit_DHT.read_retry(11, self.gpio)
+	dhtHum = SensorReading("dht11", "humidity", hum, "%")
+	dhtTem = SensorReading("dht11", "temperature", tem, "f")
+	return (dhtTem,dhtHum)
