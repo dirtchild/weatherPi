@@ -15,7 +15,8 @@
 import time
 
 class SensorReading:
-	def __init__(self, label, value, unit, timestamp=None):
+	def __init__(self, sensor, label, value, unit, timestamp=None):
+		self.sensor = sensor
 		self.label = label
 		self.value = value
 		self.unit = unit
