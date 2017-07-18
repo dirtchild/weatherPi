@@ -16,7 +16,7 @@ The hardware used in this project, in no particular order:
 * [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Adafruit SI1145](https://www.adafruit.com/product/1777) i2C UV sensor
 * [Adafruit MPL3115A2](https://www.adafruit.com/product/1893) Barometric Pressure/Altitude/Temperature
-* Generic temperature Humidity sensor - from a [bulk lot of sensors](http://www.gearbest.com/kits/pp_447873.html)
+* MPL3115A2 Generic temperature Humidity sensor - from a [bulk lot of sensors](http://www.gearbest.com/kits/pp_447873.html)
 * [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
 * [Raspberry pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Solar Powered Clip Fan](https://images-na.ssl-images-amazon.com/images/I/51NwW1oJ6fL._SY355_.jpg) - ripped apart and mounted into the housing cowel
