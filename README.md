@@ -14,7 +14,7 @@ The hardware used in this project, in no particular order:
 * [Wind Speed](https://www.amazon.co.uk/dp/B00FQGV78C/ref=pe_3187911_189395841_TE_3p_dp_2) (generic spare part)
 * [Wind Direction](https://www.amazon.co.uk/dp/B00FQGV8RM/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
-* [Adafruit SI1145](https://www.adafruit.com/product/1777) i2C UV sensor
+* [Generic UV sensor](https://www.amazon.co.uk/dp/B00NL9XNN8/ref=pe_3187911_189395841_TE_3p_dp_1) (analogue. ASIN: B00NL9XNN8)
 * [Adafruit MPL3115A2](https://www.adafruit.com/product/1893) Barometric Pressure, Altitude & Temperature
 * MPL3115A2 Generic temperature & Humidity sensor - from a [bulk lot of sensors](http://www.gearbest.com/kits/pp_447873.html)
 * [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
