@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
 # reads data from an adafruit DHT11 temp/humidity sensor
+# SOURCES:
+#       * http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-the-raspberry-pi/
+#       * https://github.com/adafruit/Adafruit_Python_DHT/blob/master/examples/AdafruitDHT.py
+#       * https://github.com/johnwargo/pi_weather_station_simple
+#       * https://www.domoticz.com/forum/viewtopic.php?t=839
 # RETURNS: two objects for humidity and temperature
 # CREATED: 2017-07-18
 # MODIFIED: see https://github.com/dirtchild/weatherPi
