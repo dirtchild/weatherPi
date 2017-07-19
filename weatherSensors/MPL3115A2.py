@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 # reads data from an adafruit DHT11 temp/humidity sensor
+# labels follow those set out in the Wunderground PWS API: 
+#	http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
+#
 # SOURCES:
 #       * http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-the-raspberry-pi/
 #       * https://github.com/adafruit/Adafruit_Python_DHT/blob/master/examples/AdafruitDHT.py
@@ -67,8 +70,8 @@ def getMPL3115A2():
 	#print "Temperature in Celsius  : %.2f C" %cTemp
 	#print "Temperature in Fahrenheit  : %.2f F" %fTemp
 	
-	mplHum = SensorReading("MPL3115A2", "pressure", thisPressure, "hpa")
-	mplTem = SensorReading("MPL3115A2", "temperature", cTemp, "c")
+	mplPres = SensorReading("MPL3115A2", "baromin", thisPressure, "hpa")
+	mplTem = SensorReading("MPL3115A2", "tempf", fTemp, "f")
 	mplAlt = SensorReading("MPL3115A2", "altitude", thisAltitude, "m")
 
-	return (mplTem,mplHum,mplAlt)
+	return (mplTem,mplPres,mplAlt)
