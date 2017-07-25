@@ -20,7 +20,7 @@ The hardware used in this project, in no particular order:
 * [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
 * [Raspberry pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Solar Powered Clip Fan](https://images-na.ssl-images-amazon.com/images/I/51NwW1oJ6fL._SY355_.jpg) - ripped apart and mounted into the housing cowel
-* [some snaps of the housing](http://imgur.com/a/hO6tJ) to get an idea of how it's setup
+* [some snaps of the housing](http://imgur.com/a/DPmJf) to get an idea of how it's setup
 
 Various design diagrams are in the DesignDocs directory, they may help someone. All sensor data passing is carried out using a custom data structure, SensorData. For consistency (and because data is uploaded to Wunderground), I use the labels set out in the [Weather Underground PWS API](http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol) when dealing with labeled sensor readings e.g. `baromin` for barometric pressure. The units defined by the wunderground API are also used for consistency if nothing more (even though it feels wrong to be using imperial measurements it's easy enough to convert things to something more sensible on display).
 
