@@ -1,0 +1,10 @@
+DONE
+→ data 1 (DHT11)
+→ adafruit temp (MPL3115A2), alt, pressure
+
+TODO
+→ I2C
+  UV
+  wind dir
+→ data 2 (rain)
+→ DATA 3 (W.SPD)
