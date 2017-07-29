@@ -12,6 +12,7 @@ The code should be relatively well documented and easy to follow. The main funci
     * a remote database (I use this to generate a basic current conditions page). 
 
 ## Dependencies
+
 * Adafruit_DHT
 * sys
 * smbus
