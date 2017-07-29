@@ -21,6 +21,7 @@ wspeed = 0
 # the call back function for each bucket tip
 def cb(channel):
 	global wspeed
+        wspeed = wspeed+1
 	
 # register the call back for pin interrupts
 GPIO.add_event_detect(PIN, GPIO.FALLING, callback=cb, bouncetime=300)
@@ -30,7 +31,7 @@ file = open(LOGFILE, "a")
 
 # display and log results
 while True:
-	line = "%i, %f" % (time.time(), wspeed)
+	line = "%s, %f" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), wspeed)
 	print(line)
 	file.write(line + "\n")
 	file.flush()
