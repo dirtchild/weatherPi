@@ -12,13 +12,14 @@ The code should be relatively well documented and easy to follow. The main funci
     * a remote database (I use this to generate a basic current conditions page). 
 
 ## Dependencies
-Adafruit_DHT
-sys
-smbus
-time
-SensorData.SensorReading
-smbus
-time
+* Adafruit_DHT
+* sys
+* smbus
+* time
+* SensorData.SensorReading (in this repo)
+* smbus
+* time
+* Adafruit_Python_ADS1x15
 
 ## Hardware
 The hardware used in this project, in no particular order:
