@@ -11,7 +11,7 @@ The code should be relatively well documented and easy to follow. The main funci
     * weather underground 
     * a remote database (I use this to generate a basic current conditions page). 
 
-## Dependencies
+## Python Module Dependencies
 
 * Adafruit_DHT
 * sys
