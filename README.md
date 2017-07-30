@@ -25,7 +25,7 @@ The code should be relatively well documented and easy to follow. The main funci
 ## Hardware
 The hardware used in this project, in no particular order:
 
-* [Wind Speed](https://www.amazon.co.uk/dp/B00FQGV78C/ref=pe_3187911_189395841_TE_3p_dp_2) (generic spare part)
+* [Maplin N96FY Wind Speed](http://www.maplin.co.uk/p/maplin-replacement-wind-speed-sensor-for-n96fy-n82nf)
 * [Wind Direction](https://www.amazon.co.uk/dp/B00FQGV8RM/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Generic UV sensor](https://www.amazon.co.uk/dp/B00NL9XNN8/ref=pe_3187911_189395841_TE_3p_dp_1) (analogue. ASIN: B00NL9XNN8)
