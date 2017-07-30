@@ -10,7 +10,7 @@ import time
 # which GPIO pin the gauge is connected to
 PIN = 13
 # file to log rainfall data in
-LOGFILE = "wsp-log.csv"
+LOGFILE = "./logs/w-speed.csv"
 
 GPIO.setmode(GPIO.BCM)  
 GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -31,7 +31,7 @@ file = open(LOGFILE, "a")
 
 # display and log results
 while True:
-	line = "%s, %f" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), wspeed)
+	line = "%s, %i" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), wspeed)
 	print(line)
 	file.write(line + "\n")
 	file.flush()

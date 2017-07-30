@@ -12,7 +12,7 @@ CALIBRATION = 0.2794
 # which GPIO pin the gauge is connected to
 PIN = 6
 # file to log rainfall data in
-LOGFILE = "log.csv"
+LOGFILE = "./logs/rain.csv"
 
 GPIO.setmode(GPIO.BCM)  
 GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -33,7 +33,8 @@ file = open(LOGFILE, "a")
 
 # display and log results
 while True:
-	line = "%i, %f" % (time.time(), rain)
+        line = "%s, %f" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()),rain)
+	#line = "%i, %f" % (time.time(), rain)
 	print(line)
 	file.write(line + "\n")
 	file.flush()
