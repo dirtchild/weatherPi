@@ -33,7 +33,7 @@ file = open(LOGFILE, "a")
 
 # display and log results
 while True:
-        line = "%s, %f" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()),rain)
+        line = "%s, %.2fmm" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()),rain)
 	#line = "%i, %f" % (time.time(), rain)
 	print(line)
 	file.write(line + "\n")

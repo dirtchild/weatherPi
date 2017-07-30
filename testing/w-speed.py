@@ -15,13 +15,16 @@ LOGFILE = "./logs/w-speed.csv"
 GPIO.setmode(GPIO.BCM)  
 GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-# variable to keep track of how much rain
+# keep track of how many ticks on the sensor
 wspeed = 0
+
+# in MPH as per http://mile-end.co.uk/blog/?p=86
+perTick= 1.492
 
 # the call back function for each bucket tip
 def cb(channel):
 	global wspeed
-        wspeed = wspeed+1
+        wspeed = wspeed+perTick
 	
 # register the call back for pin interrupts
 GPIO.add_event_detect(PIN, GPIO.FALLING, callback=cb, bouncetime=300)
@@ -31,7 +34,7 @@ file = open(LOGFILE, "a")
 
 # display and log results
 while True:
-	line = "%s, %i" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), wspeed)
+	line = "%s, %.2fMph" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), wspeed)
 	print(line)
 	file.write(line + "\n")
 	file.flush()
