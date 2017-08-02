@@ -1,5 +1,9 @@
+
 # where to log our stuff to
 logFile="/var/log/weatherData.log"
+
+# how often are we going to be reading our data from teh outside world, in seconds
+readInterval = 60
 
 # set to true to start sending stuff to wunderground
 WEATHER_UPLOAD = True
