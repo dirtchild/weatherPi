@@ -47,6 +47,5 @@ def getReading():
 	# taken from one of the links above. no idea if it works
 	uvReading = (avgVoltage - 1) * 25 / 3.0
 
-	output =  "%s, %.2f UV index, %.2f V over %i readings" % (time.strftime("%a, %d %b %Y %H:%M:%S UTC", time.gmtime()), uvReading, avgVoltage)
-	return(SensorReading("uv", "UV", output, "index"))
+	return(SensorReading("uv", "UV", uvReading, "index"))
 
