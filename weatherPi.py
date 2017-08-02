@@ -26,18 +26,20 @@ import time
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 rain = ""
-w.spd = ""
+w_spd = ""
 
 # loop forever. could have used threads, too big of a hammer for the job
 while True:
 	# read in all of our single check sensors
-	w.dir = ""
+	w_dir = ""
 	uv = ""
 	temp = ""
 	humid = ""
 	pressure = ""
 
 	if WEATHER_UPLOAD == True:
+		#DEBUG
+		print "writing stuff to online stuff"
 		# write to wunderground
 
 		# write to our database
