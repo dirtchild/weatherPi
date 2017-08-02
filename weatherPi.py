@@ -38,8 +38,9 @@ while True:
 	pressure = ""
 
 	# for the periodic stuff
-	# hourly
-	# daily
+		# 2 min
+		# 10 min
+		# daily
 
 	if WEATHER_UPLOAD == True:
 		#DEBUG
