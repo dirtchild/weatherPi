@@ -43,7 +43,7 @@ class eventSensor:
 
 	# label: as per wunderground
 	# period: in seconds. how far back you want to go
-	def getAverage(label, period):
+	def getReading(label, period):
 		thisSum=0
 		thisCnt=0
 		for thisReading in sensorLog:

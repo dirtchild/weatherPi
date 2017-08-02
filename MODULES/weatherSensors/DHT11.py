@@ -15,7 +15,7 @@
 import Adafruit_DHT
 import SensorData.SensorReading
 
-def getDHT11():
+def getReading():
 	# pin the dht is connected to
 	gpio = 23
 

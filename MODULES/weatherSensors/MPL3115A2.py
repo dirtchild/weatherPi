@@ -16,7 +16,7 @@
 import SensorData.SensorReading
 import smbus
 
-def getMPL3115A2():
+def getReading():
 	# Get I2C bus
 	bus = smbus.SMBus(1)
 
