@@ -14,12 +14,22 @@
 
 ########################################################################
 # imports
+from MODULES import weatherSensors, utilities
+import time
 
 ########################################################################
 # config
-
-########################################################################
-# functions
+# in seconds
+readInterval = 60
 
 ########################################################################
 # MAIN
+
+# fire off our time-dependent sensors (wind speed, rainfall etc)
+
+# loop forever. could have used threads, too big of a hammer for the job
+while True:
+	# read in all of our sensors for the general checks
+
+	# do something extra every N seconds - gusts, rain??? is this needed
+	time.sleep(readInterval)
