@@ -37,10 +37,7 @@ while True:
 	humid = ""
 	pressure = ""
 
-	# for the periodic stuff
-		# 2 min
-		# 10 min
-		# daily
+	# work out our dew point
 
 	if WEATHER_UPLOAD == True:
 		#DEBUG

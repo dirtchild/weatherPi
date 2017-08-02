@@ -3,9 +3,14 @@ db_pwd = ""
 db_db = ""
 db_user = ""	
 db_host = ""
+db_table = "sonsor_reading"
 
 # where to log our stuff to
 logFile="/var/log/weatherData.log"
+
+# what one bucket tip on the rainfall sensor equals
+RAIN_CALIBRATION = 0.2794
+RAIN_GPIO = 6
 
 # how often are we going to be reading our data from teh outside world, in seconds
 readInterval = 60
