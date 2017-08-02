@@ -38,16 +38,17 @@ while True:
 	pressure = ""
 
 	# work out our dew point
+	print "[DEBUG]	i'm a dew point"
 
 	if WEATHER_UPLOAD == True:
 		#DEBUG
-		print "writing stuff to online stuff"
+		print "[DEBUG]	writing stuff to online stuff"
 		# write to wunderground
 
 		# write to our database
 	else:
-		print "Not sending data to online services"
+		print "[DEBUG]	Not sending data to online services"
 		
-	# log something
+	# log something?
 	print logFile
 	time.sleep(readInterval)
