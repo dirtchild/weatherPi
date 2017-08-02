@@ -37,6 +37,10 @@ while True:
 	humid = ""
 	pressure = ""
 
+	# for the periodic stuff
+	# hourly
+	# daily
+
 	if WEATHER_UPLOAD == True:
 		#DEBUG
 		print "writing stuff to online stuff"
@@ -48,7 +52,4 @@ while True:
 		
 	# log something
 	print logFile
-
-	# do something extra every N seconds - gusts, rain??? is this needed
-
 	time.sleep(readInterval)
