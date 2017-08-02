@@ -15,21 +15,38 @@
 ########################################################################
 # imports
 from MODULES import weatherSensors, utilities
+from config import *
 import time
 
 ########################################################################
-# config
-# in seconds
-readInterval = 60
+# config is all in config.py
 
 ########################################################################
 # MAIN
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
+rain = ""
+w.spd = ""
 
 # loop forever. could have used threads, too big of a hammer for the job
 while True:
-	# read in all of our sensors for the general checks
+	# read in all of our single check sensors
+	w.dir = ""
+	uv = ""
+	temp = ""
+	humid = ""
+	pressure = ""
+
+	if WEATHER_UPLOAD == True:
+		# write to wunderground
+
+		# write to our database
+	else:
+		print "Not sending data to online services"
+		
+	# log something
+	print logFile
 
 	# do something extra every N seconds - gusts, rain??? is this needed
+
 	time.sleep(readInterval)
