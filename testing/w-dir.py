@@ -23,21 +23,6 @@ CHANNEL = 0
 
 # scaling and transposing voltage reading to actual direction
 # based on 5v supply, 100k resistor (needs scaling) - see: https://www.argentdata.com/files/80422_datasheet.pdf
-
-plants = {}
-
-# Add three key-value tuples to the dictionary.
-plants["radish"] = 2
-plants["squash"] = 4
-plants["carrot"] = 7
-
-# Get syntax 1.
-print(plants["radish"])
-
-# Get syntax 2.
-print(plants.get("tuna"))
-print(plants.get("tuna", "no tuna found"))
-
 # will be (degree|voltage)
 voltToDegree = {}
 
@@ -63,6 +48,9 @@ adc = Adafruit_ADS1x15.ADS1115()
 adc.start_adc(CHANNEL, gain=GAIN)
 start = time.time()
 value = 0
+totalVoltage = 0
+cnt = 0
+
 while (time.time() - start) <= 5.0:
     totalVoltage += adc.get_last_result()
     cnt += 1
@@ -71,6 +59,6 @@ while (time.time() - start) <= 5.0:
 adc.stop_adc()
 avgVoltage = totalVoltage / cnt
 
-output =  "%s, %.2fdegrees, %.2fV over %i readings" % (time.strftime("%a, %d %b %Y %H:%M:%S UTC", time.gmtime()), voltToDegree["avgVoltage"], avgVoltage)
+output =  "%s, %.2fV over %i readings" % (time.strftime("%a, %d %b %Y %H:%M:%S UTC", time.gmtime()), avgVoltage,cnt)
 print output
 

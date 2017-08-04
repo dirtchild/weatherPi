@@ -27,6 +27,8 @@ adc = Adafruit_ADS1x15.ADS1115()
 adc.start_adc(CHANNEL, gain=GAIN)
 start = time.time()
 value = 0
+totalVoltage = 0
+cnt = 0
 while (time.time() - start) <= 5.0:
     totalVoltage += adc.get_last_result()
     cnt += 1
@@ -37,6 +39,6 @@ avgVoltage = totalVoltage / cnt
 # taken from one of the links above. no idea if it works
 uvReading = (avgVoltage - 1) * 25 / 3.0
 
-output =  "%s, %.2f UV index, %.2f V over %i readings" % (time.strftime("%a, %d %b %Y %H:%M:%S UTC", time.gmtime()), uvReading, avgVoltage)
+output =  "%s, %.2f UV index, %.2f V over %i readings" % (time.strftime("%a, %d %b %Y %H:%M:%S UTC", time.gmtime()), uvReading, avgVoltage, cnt)
 print output
 
