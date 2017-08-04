@@ -12,7 +12,7 @@
 # CREATED: 2017-08-02
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-import SensorData.SensorReading
+from SensorData import SensorReading 
 import time
 import Adafruit_ADS1x15
 
@@ -27,7 +27,7 @@ def getReading():
 	#  -  16 = +/-0.256V
 	# See table 3 in the ADS1015/ADS1115 datasheet for more info on gain.
 	# see UV csensor data sheet: https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/ML8511_3-8-13.pdf
-	GAIN = 1
+	GAIN = 2/3
 
 	# the channel on the ADC to use
 	CHANNEL = 1
@@ -37,6 +37,8 @@ def getReading():
 	adc.start_adc(CHANNEL, gain=GAIN)
 	start = time.time()
 	value = 0
+	cnt = 0
+	totalVoltage = 0
 	while (time.time() - start) <= 5.0:
 	    totalVoltage += adc.get_last_result()
 	    cnt += 1
