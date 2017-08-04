@@ -9,7 +9,7 @@
 # CREATED: 2017-08-02
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-import SensorData.SensorReading
+from SensorData import SensorReading 
 import time
 import Adafruit_ADS1x15
 
@@ -55,6 +55,8 @@ def getReading():
 	adc.start_adc(CHANNEL, gain=GAIN)
 	start = time.time()
 	value = 0
+	totalVoltage = 0
+	cnt = 0
 	while (time.time() - start) <= 5.0:
 	    totalVoltage += adc.get_last_result()
 	    cnt += 1
@@ -63,6 +65,6 @@ def getReading():
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
 
-	
-	return(SensorReading("winddir", "winddir", voltToDegree["avgVoltage"], "degree angle"))
+	# DEBUG: should be voltToDegree["avgVoltage"]
+	return(SensorReading("winddir", "winddir", avgVoltage, "degree angle [DEBUG: avgVoltage]"))
 

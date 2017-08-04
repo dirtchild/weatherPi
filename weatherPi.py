@@ -50,5 +50,5 @@ while True:
 		print "[DEBUG]	Not sending data to online services"
 		
 	# log something?
-	print logFile
+	print "[DEBUG] log to logFile"
 	time.sleep(readInterval)
