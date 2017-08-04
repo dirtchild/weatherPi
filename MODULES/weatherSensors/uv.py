@@ -49,5 +49,5 @@ def getReading():
 	# taken from one of the links above. no idea if it works
 	uvReading = (avgVoltage - 1) * 25 / 3.0
 
-	return(SensorReading("uv", "UV", uvReading, "index"))
+	return(SensorReading("uv", "UV", uvReading, "index [DEBUG: bad math]"))
 
