@@ -13,13 +13,13 @@
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 import Adafruit_DHT
-import SensorData.SensorReading
+from SensorData import SensorReading 
 
 def getReading():
 	# pin the dht is connected to
 	gpio = 23
 
-	hum, tem = Adafruit_DHT.read_retry(11, self.gpio)
+	hum, tem = Adafruit_DHT.read_retry(11, gpio)
 	dhtHum = SensorReading("dht11", "humidity", hum, "%")
 	dhtTem = SensorReading("dht11", "tempf", tem, "f")
 	return (dhtTem,dhtHum)
