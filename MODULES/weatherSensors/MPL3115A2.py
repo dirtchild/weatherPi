@@ -13,8 +13,9 @@
 # CREATED: 2017-07-18
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-import SensorData.SensorReading
+from SensorData import SensorReading 
 import smbus
+import time
 
 def getReading():
 	# Get I2C bus
@@ -63,13 +64,6 @@ def getReading():
 	pres = ((data[1] * 65536) + (data[2] * 256) + (data[3] & 0xF0)) / 16
 	thisPressure = (pres / 4.0) / 1000.0
 
-	##DEBUG
-	## Output data to screen
-	#print "Pressure : %.2f kPa" %pressure
-	#print "Altitude : %.2f m" %altitude
-	#print "Temperature in Celsius  : %.2f C" %cTemp
-	#print "Temperature in Fahrenheit  : %.2f F" %fTemp
-	
 	mplPres = SensorReading("MPL3115A2", "baromin", thisPressure, "hpa")
 	mplTem = SensorReading("MPL3115A2", "tempf", fTemp, "f")
 	mplAlt = SensorReading("MPL3115A2", "altitude", thisAltitude, "m")
