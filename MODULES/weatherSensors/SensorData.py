@@ -32,4 +32,4 @@ class SensorReading:
 			self.timeStamp = timeStamp
 
 	def __repr__(self):
-		return "[SensorReading] self.sensor>>[%s]  self.label>>[%s]  self.value>>[%s]   self.unit>>[%s]  self.timeStamp>>[%s]" % (self.sensor, self.label, self.value, self.unit, self.timeStamp)
+		return "[SensorReading] sensor>>[%s] label>>[%s] value>>[%s] unit>>[%s] timeStamp>>[%s]" % (self.sensor, self.label, self.value, self.unit, self.timeStamp)
