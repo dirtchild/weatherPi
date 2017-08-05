@@ -14,6 +14,11 @@
 ##
 
 import time
+global sensor
+global label
+global value
+global unit
+global timeStamp
 
 class SensorReading:
 	def __init__(self, sensor, label, value, unit, timeStamp=None):
@@ -25,3 +30,6 @@ class SensorReading:
 			self.timeStamp = time.time()
 		else:	
 			self.timeStamp = timeStamp
+
+	def __repr__(self):
+		return "[SensorReading]\n\tself.sensor [%s]\n\t self.label [%s]\n\t self.value [%s] \n\t self.unit [%s]\n\t self.timeStamp [%s]" % (self.sensor, self.label, self.value, self.unit, self.timeStamp)

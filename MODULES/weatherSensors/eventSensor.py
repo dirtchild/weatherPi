@@ -19,8 +19,8 @@ class eventSensor:
 	sensor = ""
 	label = ""
 	unit = ""
-	calibration = ""
-	gpioToRead = ""
+	calibration = 0
+	gpioToRead = 0
 	
 	# * gpioToread: data pin, in GPIO notation
 	# * calibration: what one even means. e.g. how many mm in one rain bucket tip
@@ -41,13 +41,14 @@ class eventSensor:
 	def __exit__(self, exc_type, exc_value, traceback):
 		GPIO.cleanup()
 
+	def __repr__(self):
+		return "[eventSensor]\n\tself.gpioToRead [",self.gpioToRead,"]\n\t self.calibration [",self.calibration,"]\n\t self.sensor [",self.sensor,"]\n\t self.label [",self.label,"]\n\t self.unit [",self.unit,"]"
+        
 	# the call back function for each bucket tip
 	def logSensorEvent(self,channel):
 		global sensorLog
-		#DEBUG
-		print label,"event registered"
 		# add to the global sensor array
-		sensorLog.append(SensorReading(sensor,label,calibration,unit))
+		sensorLog.append(SensorReading(self.sensor,self.label,self.calibration,self.unit))
 		# remove last until no more older than 24 hours (86400 seconds)
 		while (time.time() - sensorLog[0].timeStamp) >= 86400:
 			del sensorLog[0]
@@ -59,14 +60,12 @@ class eventSensor:
 		thisSum=0
 		thisCnt=0
 		# need to have some readings for this to make sense
-		if len(sensorLog) <= 0:
+		if len(sensorLog) <= 0:	
 			exit("no readings!!!!") 
-		#DEBUG
-		print "UPTO: issue with logic below"
 		for thisReading in sensorLog:
-			if (time.time() - thisReading.timeStamp) >= period: 
+			if (time.time() - thisReading.timeStamp) <= period:
 				thisSum += thisReading.value
 				thisCnt += 1
 		thisAvg=thisSum/thisCnt
-		return(SensorReading(sensor,label,thisAvg,unit))
+		return(SensorReading(self.sensor,self.label,thisAvg,self.unit))
 
