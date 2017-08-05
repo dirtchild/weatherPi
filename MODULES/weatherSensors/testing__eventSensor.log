@@ -3011,3 +3011,18 @@
 [SensorReading] sensor>>[rain event] label>>[RAIN 1M] value>>[0] unit>>[mm] timeStamp>>[1501971289.02]
 [SensorReading] sensor>>[rain event] label>>[RAIN 1H] value>>[0] unit>>[mm] timeStamp>>[1501971289.02]
 -------------------------------------------------------------------------------
+[SensorReading] sensor>>[wspeed event] label>>[WS 1M] value>>[23.872] unit>>[MPH] timeStamp>>[1501971294.03]
+[SensorReading] sensor>>[wspeed event] label>>[WS 1H] value>>[1754.592] unit>>[MPH] timeStamp>>[1501971294.05]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1M] value>>[0] unit>>[mm] timeStamp>>[1501971294.05]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1H] value>>[0] unit>>[mm] timeStamp>>[1501971294.05]
+-------------------------------------------------------------------------------
+[SensorReading] sensor>>[wspeed event] label>>[WS 1M] value>>[16.412] unit>>[MPH] timeStamp>>[1501971299.08]
+[SensorReading] sensor>>[wspeed event] label>>[WS 1H] value>>[1754.592] unit>>[MPH] timeStamp>>[1501971299.1]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1M] value>>[0] unit>>[mm] timeStamp>>[1501971299.1]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1H] value>>[0] unit>>[mm] timeStamp>>[1501971299.1]
+-------------------------------------------------------------------------------
+[SensorReading] sensor>>[wspeed event] label>>[WS 1M] value>>[13.428] unit>>[MPH] timeStamp>>[1501971304.12]
+[SensorReading] sensor>>[wspeed event] label>>[WS 1H] value>>[1756.084] unit>>[MPH] timeStamp>>[1501971304.15]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1M] value>>[0] unit>>[mm] timeStamp>>[1501971304.15]
+[SensorReading] sensor>>[rain event] label>>[RAIN 1H] value>>[0] unit>>[mm] timeStamp>>[1501971304.15]
+-------------------------------------------------------------------------------
