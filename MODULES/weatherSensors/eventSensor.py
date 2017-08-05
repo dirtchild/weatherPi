@@ -9,10 +9,19 @@
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 import RPi.GPIO as GPIO
-import SensorData.SensorReading as SensorReading
+from SensorData import SensorReading 
+
 import time
 
 class eventSensor:
+	global sensorLog, sensor, label, unit, calibration, gpioToRead
+	sensorLog = []
+	sensor = ""
+	label = ""
+	unit = ""
+	calibration = ""
+	gpioToRead = ""
+	
 	# * gpioToread: data pin, in GPIO notation
 	# * calibration: what one even means. e.g. how many mm in one rain bucket tip
 	# * sensor: the name of the sensor
@@ -27,14 +36,16 @@ class eventSensor:
 
 		GPIO.setmode(GPIO.BCM)  
 		GPIO.setup(gpioToRead, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-		GPIO.add_event_detect(PIN, GPIO.FALLING, callback=logSensorEvent, bouncetime=300)
+		GPIO.add_event_detect(gpioToRead, GPIO.FALLING, callback=self.logSensorEvent, bouncetime=300)
 
 	def __exit__(self, exc_type, exc_value, traceback):
 		GPIO.cleanup()
 
 	# the call back function for each bucket tip
-	def logSensorEvent(channel):
+	def logSensorEvent(self,channel):
 		global sensorLog
+		#DEBUG
+		print label,"event registered"
 		# add to the global sensor array
 		sensorLog.append(SensorReading(sensor,label,calibration,unit))
 		# remove last until no more older than 24 hours (86400 seconds)
@@ -43,9 +54,15 @@ class eventSensor:
 
 	# label: as per wunderground
 	# period: in seconds. how far back you want to go
-	def getReading(label, period):
+	def getReading(self,label, period):
+		global sensorLog
 		thisSum=0
 		thisCnt=0
+		# need to have some readings for this to make sense
+		if len(sensorLog) <= 0:
+			exit("no readings!!!!") 
+		#DEBUG
+		print "UPTO: issue with logic below"
 		for thisReading in sensorLog:
 			if (time.time() - thisReading.timeStamp) >= period: 
 				thisSum += thisReading.value
