@@ -46,16 +46,16 @@ class eventSensor:
         
 	# the call back function for each bucket tip
 	def logSensorEvent(self,channel):
-		global sensorLog
+		#global sensorLog
 		# add to the global sensor array
 		sensorLog.append(SensorReading(self.sensor,self.label,self.calibration,self.unit))
 		# remove last until no more older than 24 hours (86400 seconds)
 		while (time.time() - sensorLog[0].timeStamp) >= 86400:
-			del sensorLog[0]
+			del self.sensorLog[0]
 
 	# label: as per wunderground
 	# period: in seconds. how far back you want to go
-	def getReading(self,label, period):
+	def getAvgReading(self,label, period):
 		global sensorLog
 		thisSum=0
 		thisCnt=0
@@ -67,5 +67,20 @@ class eventSensor:
 				thisSum += thisReading.value
 				thisCnt += 1
 		thisAvg=thisSum/thisCnt
+		#DEBUG
+		print thisAvg,"=",thisSum,"/",thisCnt
 		return(SensorReading(self.sensor,self.label,thisAvg,self.unit))
+
+	# label: as per wunderground
+	# period: in seconds. how far back you want to go
+	def getSumReading(self,label, period):
+		global sensorLog
+		thisSum=0
+		# need to have some readings for this to make sense
+		if len(sensorLog) <= 0:	
+			exit("no readings!!!!") 
+		for thisReading in sensorLog:
+			if (time.time() - thisReading.timeStamp) <= period:
+				thisSum += thisReading.value
+		return(SensorReading(self.sensor,self.label,thisSum,self.unit))
 
