@@ -25,20 +25,19 @@ import time
 # MAIN
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
-rain = ""
-w_spd = ""
+wSpeed = eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
+rain = eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
-# loop forever. could have used threads, too big of a hammer for the job
+# loop forever.
 while True:
 	# read in all of our single check sensors
-	w_dir = ""
-	uv = ""
-	temp = ""
-	humid = ""
-	pressure = ""
+	dhtTem,dhtHum = weatherSensors.DHT11.getReading()
+	mplTem,mplPres,mplAlt = weatherSensors.MPL3115A2.getReading()
+	uv = weatherSensors.uv.getReading()
+	windDir = weatherSensors.windDirection.getReading()
 
 	# work out our dew point
-	print "[DEBUG]	i'm a dew point"
+	print "[DEBUG]	i'm a dew point from: https://github.com/cmcginty/PyWeather/tree/master/weather/units"
 
 	if WEATHER_UPLOAD == True:
 		#DEBUG

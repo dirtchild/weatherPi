@@ -23,7 +23,12 @@ WU_URL = "http://weatherstation.wunderground.com/weatherstation/updateweathersta
 wu_station_id = ""
 wu_station_key = ""
 
-
+# age of event objects to keep, in seconds
+# 720 = 12 minutes
+# 90000 = 25 hours
+W_SPD_EVENTS_PERIOD = 720
+RAIN_EVENTS_PERIOD = 90000
+ 
 
 ###################################################################################
 # WUNDERGROUP API REFERENCE
