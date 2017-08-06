@@ -59,3 +59,22 @@ class eventSensor:
 					thisSum += thisReading.value
 		return(SensorReading(self.sensor,newLabel,thisSum,self.unit))
 
+	# label: as per wunderground
+	# period: in seconds. how far back you want to go
+	def getPeriodAverage(self,newLabel, period):
+		global sensorLog
+		thisSum=0
+		cnt=0
+		# need to have some readings for this to make sense
+		if len(self.sensorLog) > 0:	
+			for thisReading in self.sensorLog:
+				if (time.time() - thisReading.timeStamp) <= period:
+					thisSum += thisReading.value
+		return(SensorReading(self.sensor,newLabel,thisSum/period,self.unit))
+
+	# label: as per wunderground
+	# period: in seconds. how far back you want to go
+	def getLast(self):
+		global sensorLog
+		return(sensorLog[-1])
+
