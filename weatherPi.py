@@ -14,7 +14,7 @@
 
 ########################################################################
 # imports
-from MODULES import weatherSensors, utilities
+from weaatherSensors import *
 from config import *
 import time
 
