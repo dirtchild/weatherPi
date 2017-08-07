@@ -6,7 +6,7 @@
 ##
 ## * name: the title - UID for thsi measurement
 ## * value: the reading
-## * unit: what we are measuring 
+## * unit: what we are measuring
 ##
 ## CREATED: 2017/07/16 19:04:12
 ## MODIFIED: see https://github.com/dirtchild/weatherPi
@@ -15,7 +15,7 @@ from __future__ import print_function
 from config import *
 from datetime import datetime
 from urllib import urlencode
-from weatherSensors import *
+from weatherSensors import eventSensor as eventSensor
 import MySQLdb as my
 import time
 import urllib2
@@ -110,7 +110,7 @@ while True:
 			response.close()  # best practice to close the file
 		except:
 			print("Exception:", sys.exc_info()[0], SLASH_N)
-		
+
 		# write to our database
 		sql = "insert into %s VALUES(Null, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)" % \
 			(db_table,\
@@ -140,16 +140,15 @@ while True:
 			indoorhumidity)
 		number_of_rows = cursor.execute(sql)
 		db.commit()
-	
+
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]\
 		:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]\
 		:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
 
-	
+
 	# wait on a bit
 	time.sleep(readInterval)
 
 # clean up after ourselves
 db.close()
-
