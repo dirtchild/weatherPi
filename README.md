@@ -13,11 +13,11 @@ The code should be relatively well documented and easy to follow. The main funci
 
 ## Python Module Dependencies
 
-* Adafruit_DHT
-* SensorData.SensorReading (in this repo)
+* WeatherSensors (in this repo)
 * smbus
+* Adafruit_DHT
 * Adafruit_Python_ADS1x15
-* [PyWeather](https://github.com/cmcginty/PyWeather)
+* RPi.GPIO
 
 ## Hardware
 The hardware used in this project, in no particular order:
