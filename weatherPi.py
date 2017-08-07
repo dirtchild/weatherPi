@@ -43,70 +43,67 @@ while True:
 	tempF = (mplTem + dhtTem) / 2
 	dpF = dewpointF(tempF, dhtHum)
 
-	# setup our string to write to things base don what we've gathered
-
-
-
-#	winddir = 
-#	windspeedmph =
-#	windgustmph = "Null"
-#	windgustdir = "Null"
-#	windspdmph_avg2m = 
-#	winddir_avg2m = "Null"
-#	windgustmph_10m = "Null"
-#	windgustdir_10m = "Null"
-#	humidity =
-#	dewptf = 
-#	tempf =
-#	rainin =
-#	dailyrainin =
-#	baromin =
-#	weather = "Null"
-#	clouds = "Null"
-#	soiltempf = "Null"
-#	soilmoisture = "Null"
-#	leafwetness = "Null"
-#	solarradiation = "Null"
-#	UV = 
-#	visibility = "Null"
-#	indoortempf = "Null"
-#	indoorhumidity = "Null"
+	# setup our reading variables to make things better for human brains
+	winddir = 
+	windspeedmph =
+	windgustmph = "Null"
+	windgustdir = "Null"
+	windspdmph_avg2m = 
+	winddir_avg2m = "Null"
+	windgustmph_10m = "Null"
+	windgustdir_10m = "Null"
+	humidity =
+	dewptf = 
+	tempf =
+	rainin =
+	dailyrainin =
+	baromin =
+	weather = "Null"
+	clouds = "Null"
+	soiltempf = "Null"
+	soilmoisture = "Null"
+	leafwetness = "Null"
+	solarradiation = "Null"
+	UV = 
+	visibility = "Null"
+	indoortempf = "Null"
+	indoorhumidity = "Null"
 	
 	# do the work
 	if WEATHER_UPLOAD == True:
 		# write to wunderground
 		#DEBUG
-		print "[DEBUG]	writing stuff to wunder"
+		print "[DEBUG]	writing stuff to online stuff"
 		
 		# write to our database
-#		sql = "insert into %s (%s,%s) VALUES (%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)" % \
-#			(db_table,\
-#			winddir,\
-#			windspeedmph,\
-#			windgustmph,\
-#			windgustdir,\
-#			windspdmph_avg2m,\
-#			winddir_avg2m,\
-#			windgustmph_10m,\
-#			windgustdir_10m,\
-#			humidity,\
-#			dewptf,\
-#			tempf,\
-#			rainin,\
-#			dailyrainin,\
-#			baromin,\
-#			weather,\
-#			clouds,\
-#			soiltempf,\
-#			soilmoisture,\
-#			leafwetness,\
-#			solarradiation,\
-#			UV,\
-#			visibility,\
-#			indoortempf,\
-#			indoorhumidity)
-#		number_of_rows = cursor.execute(sql)
-#		db.commit()
+		sql = "insert into %s VALUES(Null, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)" % \
+			(db_table,\
+			winddir,\
+			windspeedmph,\
+			windgustmph,\
+			windgustdir,\
+			windspdmph_avg2m,\
+			winddir_avg2m,\
+			windgustmph_10m,\
+			windgustdir_10m,\
+			humidity,\
+			dewptf,\
+			tempf,\
+			rainin,\
+			dailyrainin,\
+			baromin,\
+			weather,\
+			clouds,\
+			soiltempf,\
+			soilmoisture,\
+			leafwetness,\
+			solarradiation,\
+			UV,\
+			visibility,\
+			indoortempf,\
+			indoorhumidity)
+		number_of_rows = cursor.execute(sql)
+		db.commit()
 	
 	# log something?
 	print "[DEBUG] log to logFile"
