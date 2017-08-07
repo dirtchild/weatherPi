@@ -13,25 +13,27 @@ The code should be relatively well documented and easy to follow. The main funci
 
 ## Python Module Dependencies
 
-* WeatherSensors (in this repo)
-* smbus
 * Adafruit_DHT
 * Adafruit_Python_ADS1x15
+* MySQLdb
 * RPi.GPIO
+* smbus
+* urllib2
+* WeatherSensors (in this repo)
 
 ## Hardware
 The hardware used in this project, in no particular order:
 
-* [Maplin N96FY Wind Speed](http://www.maplin.co.uk/p/maplin-replacement-wind-speed-sensor-for-n96fy-n82nf)
-* [Wind Direction](https://www.amazon.co.uk/dp/B00FQGV8RM/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
-* [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
-* [Generic UV sensor](https://www.amazon.co.uk/dp/B00NL9XNN8/ref=pe_3187911_189395841_TE_3p_dp_1) (analogue. ASIN: B00NL9XNN8)
 * [Adafruit MPL3115A2](https://www.adafruit.com/product/1893) Barometric Pressure, Altitude & Temperature
-* MPL3115A2 Generic temperature & Humidity sensor - from a [bulk lot of sensors](http://www.gearbest.com/kits/pp_447873.html)
 * [ADS1015 ADC Module](https://www.adafruit.com/product/1083) - 12 Bit I2C 4 Channel
+* [Generic UV sensor](https://www.amazon.co.uk/dp/B00NL9XNN8/ref=pe_3187911_189395841_TE_3p_dp_1) (analogue. ASIN: B00NL9XNN8)
+* [Maplin N96FY Wind Speed](http://www.maplin.co.uk/p/maplin-replacement-wind-speed-sensor-for-n96fy-n82nf)
+* [Rainfall](https://www.amazon.co.uk/dp/B00QDMBXUA/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
 * [Raspberry pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Solar Powered Clip Fan](https://images-na.ssl-images-amazon.com/images/I/51NwW1oJ6fL._SY355_.jpg) - ripped apart and mounted into the housing cowel
 * [some snaps of the housing](http://imgur.com/a/DPmJf) to get an idea of how it's setup
+* [Wind Direction](https://www.amazon.co.uk/dp/B00FQGV8RM/ref=pe_3187911_189395841_TE_3p_dp_1) (generic spare part)
+* MPL3115A2 Generic temperature & Humidity sensor - from a [bulk lot of sensors](http://www.gearbest.com/kits/pp_447873.html)
 
 ## Design
 Various design diagrams are in the DesignDocs directory, they may help someone. All sensor data passing is carried out using a custom data structure, SensorData. For consistency (and because data is uploaded to Wunderground), I use the labels set out in the [Weather Underground PWS API](http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol) when dealing with labeled sensor readings e.g. `baromin` for barometric pressure. The units defined by the wunderground API are also used for consistency if nothing more (even though it feels wrong to be using imperial measurements it's easy enough to convert things to something more sensible on display).
