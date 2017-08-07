@@ -15,21 +15,14 @@ from __future__ import print_function
 from config import *
 from datetime import datetime
 from urllib import urlencode
-from weatherSensors import eventSensor as eventSensor
+from weatherSensors import eventSensor
 import MySQLdb as my
 import time
 import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
-wSpeed = eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
-rain = eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
-
-# DB connection
-db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
-dbCursor = db.cursor()
-
-# URL prep stuff for wunderground upload
-# DEBUG
+wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
+rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
 while True:
@@ -71,7 +64,7 @@ while True:
 	indoorhumidity = "Null"
 
 	# do the work
-	if WEATHER_UPLOAD == True:
+	if WUNDERGROUND_UPLOAD == True:
 		# write to wunderground
 		weather_data = {
 			"action": "updateraw",
@@ -112,6 +105,11 @@ while True:
 			print("Exception:", sys.exc_info()[0], SLASH_N)
 
 		# write to our database
+	if DATABASE_UPLOAD == True:
+		# DB connection
+		db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
+		dbCursor = db.cursor()
+
 		sql = "insert into %s VALUES(Null, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)" % \
 			(db_table,\
 			winddir,\
@@ -140,6 +138,8 @@ while True:
 			indoorhumidity)
 		number_of_rows = cursor.execute(sql)
 		db.commit()
+		# clean up after ourselves
+		db.close()
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]\
@@ -150,5 +150,3 @@ while True:
 	# wait on a bit
 	time.sleep(readInterval)
 
-# clean up after ourselves
-db.close()
