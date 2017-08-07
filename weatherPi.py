@@ -15,14 +15,14 @@ from __future__ import print_function
 from config import *
 from datetime import datetime
 from urllib import urlencode
-from weatherSensors import eventSensor
+from weatherSensors import *
 import MySQLdb as my
 import time
 import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
-wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
-rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
+wSpeed = weatherSensors.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
+rain = weatherSensors.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
 while True:
