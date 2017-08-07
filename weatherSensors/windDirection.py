@@ -28,28 +28,6 @@ def getReading():
 	# the channel on the ADC to use
 	CHANNEL = 0
 
-	# scaling and transposing voltage reading to actual direction
-	# based on 5v supply, 100k resistor (needs scaling) - see: https://www.argentdata.com/files/80422_datasheet.pdf
-	# will be (degree|voltage)
-	voltToDegree = {}
-
-	voltToDegree["3.84"] = 0.0
-	voltToDegree["1.98"] = 22.5
-	voltToDegree["2.25"] = 45.0
-	voltToDegree["0.41"] = 67.5
-	voltToDegree["0.45"] = 90.0
-	voltToDegree["0.32"] = 112.5
-	voltToDegree["0.90"] = 135.0
-	voltToDegree["0.62"] = 157.5
-	voltToDegree["1.40"] = 180.0
-	voltToDegree["1.19"] = 202.5
-	voltToDegree["3.08"] = 225.0
-	voltToDegree["2.93"] = 247.5
-	voltToDegree["4.62"] = 270.0
-	voltToDegree["4.04"] = 292.5
-	voltToDegree["4.78"] = 315.0
-	voltToDegree["3.43"] = 337.5
-
 	# Create an ADS1115 ADC (16-bit) instance and do stuff with it
 	adc = Adafruit_ADS1x15.ADS1115()
 	adc.start_adc(CHANNEL, gain=GAIN)
@@ -65,6 +43,6 @@ def getReading():
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
 
-	# DEBUG: should be voltToDegree["avgVoltage"]
+	# DEBUG: should be voltToDeg(avgVoltage) once the bad things are worked out
 	return(SensorReading("winddir", "winddir", avgVoltage, "degree angle [DEBUG: avgVoltage]"))
 

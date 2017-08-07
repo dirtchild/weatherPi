@@ -15,12 +15,14 @@
 
 import Adafruit_DHT
 from SensorData import SensorReading 
+from convertors import *
+
 
 def getReading():
 	#NOT WORKING: hum, tem = Adafruit_DHT.read_retry(sensor, gpio)
 	#WORKINGISH: hum, tem = Adafruit_DHT.read_retry(11, 5)
 	humid, tempC = Adafruit_DHT.read_retry(11, 5)
-	tempf = tempC * 9/5.0 + 32
+	tempf = c_to_f(tempC)
 	dhtHum = SensorReading("dht11", "humidity", humid, "%")
 	dhtTem = SensorReading("dht11", "tempf", tempf, "f")
 	return (dhtTem,dhtHum)

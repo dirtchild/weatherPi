@@ -13,6 +13,7 @@
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 from SensorData import SensorReading 
+from convertors import *
 import time
 import Adafruit_ADS1x15
 
@@ -46,8 +47,7 @@ def getReading():
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
-	# taken from one of the links above. no idea if it works
-	uvReading = (avgVoltage - 1) * 25 / 3.0
-
-	return(SensorReading("uv", "UV", uvReading, "index [DEBUG: bad math]"))
+	#DEBUG - the UV output is wrong
+	print "avgVoltage[%.2f] = totalVoltage[%.2f] / cnt[%.2f]" % (avgVoltage,totalVoltage,cnt)
+	return(SensorReading("uv", "UV", voltToUvIndex(avgVoltage), "index [DEBUG: bad math]"))
 

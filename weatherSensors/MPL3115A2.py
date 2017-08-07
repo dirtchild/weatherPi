@@ -14,6 +14,7 @@
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 from SensorData import SensorReading 
+from convertors import *
 import smbus
 import time
 
@@ -46,7 +47,7 @@ def getReading():
 	temp = ((data[4] * 256) + (data[5] & 0xF0)) / 16
 	thisAltitude = tHeight / 16.0
 	cTemp = temp / 16.0
-	fTemp = cTemp * 1.8 + 32
+	fTemp = c_to_f(cTemp)
 
 	# MPL3115A2 address, 0x60(96)
 	# Select control register, 0x26(38)
