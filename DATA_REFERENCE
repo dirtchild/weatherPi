@@ -1,0 +1,125 @@
+dateutc
+winddir
+windspeedmph
+windgustmph
+windgustdir
+windspdmph_avg2m
+winddir_avg2m
+windgustmph_10m
+windgustdir_10m
+humidity
+dewptf
+tempf
+rainin
+dailyrainin
+baromin
+weather
+clouds
+soiltempf
+soilmoisture
+leafwetness
+solarradiation
+UV
+visibility
+indoortempf
+indoorhumidity
+
+###################################################################################
+# WUNDERGROUP API REFERENCE
+# 
+# http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
+#
+#-----FIELDS-----
+# action=updateraw
+# ID
+# PASSWORD
+# dateutc=now
+# winddir - [0-360 instantaneous wind direction]
+# windspeedmph - [mph instantaneous wind speed]
+# windgustmph - [mph current wind gust, using software specific time period]
+# windgustdir - [0-360 using software specific time period]
+# windspdmph_avg2m  - [mph 2 minute average wind speed mph]
+# winddir_avg2m - [0-360 2 minute average wind direction]
+# windgustmph_10m - [mph past 10 minutes wind gust mph ]
+# windgustdir_10m - [0-360 past 10 minutes wind gust direction]
+# humidity - [% outdoor humidity 0-100%]
+# dewptf- [F outdoor dewpoint F]
+# tempf - [F outdoor temperature] 
+#  * for extra outdoor sensors use temp2f, temp3f, and so on
+# rainin - [rain inches over the past hour)] -- the accumulated rainfall in the past 60 min
+# dailyrainin - [rain inches so far today in local time]
+# baromin - [barometric pressure inches]
+# weather - [text] -- metar style (+RA)
+# clouds - [text] -- SKC, FEW, SCT, BKN, OVC
+# soiltempf - [F soil temperature]
+#  * for sensors 2,3,4 use soiltemp2f, soiltemp3f, and soiltemp4f
+# soilmoisture - [%]
+# * for sensors 2,3,4 use soilmoisture2, soilmoisture3, and soilmoisture4
+# leafwetness  - [%]
+# + for sensor 2 use leafwetness2
+# solarradiation - [W/m^2]
+# UV - [index]
+# visibility - [nm visibility]
+# indoortempf - [F indoor temperature F]
+# indoorhumidity - [% indoor humidity 0-100]
+# 
+#-----EXAMPLE URI UPLOAD:-----
+# https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?ID=KCASANFR5&PASSWORD=XXXXXX&dateutc=2000-01-01+10%3A32%3A35&winddir=230&windspeedmph=12&windgustmph=12&tempf=70&rainin=0&baromin=29.1&dewptf=68.2&humidity=90&weather=&clouds=&softwaretype=vws%20versionxx&action=updateraw# 
+
+
+
+
+
+
+#	winddir = 
+#	windspeedmph =
+#	windgustmph = "Null"
+#	windgustdir = "Null"
+#	windspdmph_avg2m = 
+#	winddir_avg2m = "Null"
+#	windgustmph_10m = "Null"
+#	windgustdir_10m = "Null"
+#	humidity =
+#	dewptf = 
+#	tempf =
+#	rainin =
+#	dailyrainin =
+#	baromin =
+#	weather = "Null"
+#	clouds = "Null"
+#	soiltempf = "Null"
+#	soilmoisture = "Null"
+#	leafwetness = "Null"
+#	solarradiation = "Null"
+#	UV = 
+#	visibility = "Null"
+#	indoortempf = "Null"
+#	indoorhumidity = "Null"
+
+
+"humidity": str(curHumidity),
+
+"winddir": str(winddir),
+"windspeedmph": str(windspeedmph),
+"windgustmph": str(windgustmph),
+"windgustdir": str(windgustdir),
+"windspdmph_avg2m": str(windspdmph_avg2m),
+"winddir_avg2m": str(winddir_avg2m),
+"windgustmph_10m": str(windgustmph_10m),
+"windgustdir_10m": str(windgustdir_10m),
+"humidity": str(humidity),
+"dewptf": str(dewptf),
+"tempf": str(tempf),
+"rainin": str(rainin),
+"dailyrainin": str(dailyrainin),
+"baromin": str(baromin),
+"weather": str(weather),
+"clouds": str(clouds),
+"soiltempf": str(soiltempf),
+"soilmoisture": str(soilmoisture),
+"leafwetness": str(leafwetness),
+"solarradiation": str(solarradiation),
+"UV": str(UV),
+"visibility": str(visibility),
+"indoortempf": str(indoortempf),
+"indoorhumidity": str(indoorhumidity),
