@@ -13,24 +13,26 @@
 ##
 from __future__ import print_function
 from config import *
+#DEBUG
+print(dir())
 from datetime import datetime
 from urllib import urlencode
-from weatherSensors import *
-import MySQLdb as my
+from weatherSensors import convertors,DHT11,eventSensor,MPL3115A2,SensorData,uv,windDirection
+#import MySQLdb as my
 import time
 import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
-wSpeed = weatherSensors.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
-rain = weatherSensors.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
+wSpeed = eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
+rain = eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
 while True:
 	# read in all of our single check sensors for thsi run
-	dhtTem,dhtHum = weatherSensors.DHT11.getReading()
-	mplTem,mplPres,mplAlt = weatherSensors.MPL3115A2.getReading()
-	uv = weatherSensors.uv.getReading()
-	windDir = weatherSensors.windDirection.getReading()
+	dhtTem,dhtHum = DHT11.getReading()
+	mplTem,mplPres,mplAlt = MPL3115A2.getReading()
+	uv = uv.getReading()
+	windDir = windDirection.getReading()
 	windSpeedNow = wSpeed.getLast()
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
 	rainIn = rain.getPeriodTotal("rainIn", 3600)
@@ -149,4 +151,3 @@ while True:
 
 	# wait on a bit
 	time.sleep(readInterval)
-

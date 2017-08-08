@@ -1,0 +1,2 @@
+def doThing():
+   print "THING!"
