@@ -29,7 +29,7 @@ while True:
 	# read in all of our single check sensors for thsi run
 	dhtTem,dhtHum = DHT11.getReading()
 	mplTem,mplPres,mplAlt = MPL3115A2.getReading()
-	uv = uv.getReading()
+	UV = uv.getReading()
 	windDir = windDirection.getReading()
 	windSpeedNow = wSpeed.getLast()
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
@@ -108,8 +108,8 @@ while True:
 		# DB connection
 		db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
 		dbCursor = db.cursor()
-
-		sql = "insert into %s VALUES(Null, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)" % \
+		#DEBUG:  %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s
+		sql = "insert into %s VALUES(Null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % \
 			(db_table,\
 			winddir,\
 			windspeedmph,\
@@ -135,7 +135,7 @@ while True:
 			visibility,\
 			indoortempf,\
 			indoorhumidity)
-		number_of_rows = cursor.execute(sql)
+		number_of_rows = dbCursor.execute(sql)
 		db.commit()
 		# clean up after ourselves
 		db.close()
