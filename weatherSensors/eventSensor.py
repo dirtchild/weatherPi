@@ -76,5 +76,9 @@ class eventSensor:
 	# period: in seconds. how far back you want to go
 	def getLast(self):
 		global sensorLog
-		return(sensorLog[-1])
+		if len(self.sensorLog) > 0:
+			return(self.sensorLog[-1])
+		else:
+			return(SensorReading(self.sensor,self.label,0,self.unit))
+
 

@@ -14,8 +14,8 @@ def f_to_c(input_temp):
 def kpaToInches(kpa):
    return kpa * 0.295301
 
-def mmToInches(mm):
-   return mm * 0.039370
+def mmToInches(mm):    
+    return float(mm) * 0.039370
 
 def voltToUvIndex(v):
     # DEBUG - taken from one of the links in weatherSensors.uv - it's not giving the correct output
