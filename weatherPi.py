@@ -57,7 +57,7 @@ while True:
 	soilmoisture = "Null"
 	leafwetness = "Null"
 	solarradiation = "Null"
-	UV = uv.value
+	UV = UV.value
 	visibility = "Null"
 	indoortempf = "Null"
 	indoorhumidity = "Null"
@@ -141,9 +141,7 @@ while True:
 		db.close()
 
 	# log something
-	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]\
-		:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]\
-		:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
+	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
 
 
 	# wait on a bit
