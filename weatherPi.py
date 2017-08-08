@@ -18,6 +18,7 @@ from urllib import urlencode
 from weatherSensors import convertors,DHT11,eventSensor,MPL3115A2,SensorData,uv,windDirection
 import MySQLdb as my
 import time
+import sys
 import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
@@ -61,6 +62,8 @@ while True:
 	visibility = "Null"
 	indoortempf = "Null"
 	indoorhumidity = "Null"
+        
+        sys.stdout.flush()
 
 	# do the work
 	if WUNDERGROUND_UPLOAD == True:
