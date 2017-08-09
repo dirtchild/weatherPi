@@ -104,7 +104,7 @@ while True:
 			#print("Server response:", html)
 			response.close()  # best practice to close the file
 		except:
-			print("Exception:", sys.exc_info()[0], SLASH_N)
+			print("Exception:", sys.exc_info()[0], "\n")
 
 		# write to our database
 	if DATABASE_UPLOAD == True:
