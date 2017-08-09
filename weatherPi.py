@@ -30,9 +30,9 @@ while True:
 	# read in all of our single check sensors for thsi run
 	dhtTem,dhtHum = DHT11.getReading()
 	mplTem,mplPres,mplAlt = MPL3115A2.getReading()
-	UV = uv.getReading()
+	UV,solarradiation = uv.getReading()
 	windDir = windDirection.getReading()
-	windSpeedNow = wSpeed.getLast()
+	windSpeedNow = wSpeed.getPeriodAverage("windSpeedNow",10)
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
 	rainIn = rain.getPeriodTotal("rainIn", 3600)
 	dailyrainin = convertors.mmToInches(rain.getPeriodTotal("dailyrainin", 86400).value)
@@ -57,12 +57,12 @@ while True:
 	soiltempf = "Null"
 	soilmoisture = "Null"
 	leafwetness = "Null"
-	solarradiation = "Null"
+	solarradiation = solarradiation.value
 	UV = UV.value
 	visibility = "Null"
 	indoortempf = "Null"
 	indoorhumidity = "Null"
-        
+
         sys.stdout.flush()
 
 	# do the work
@@ -145,7 +145,7 @@ while True:
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
-        sys.stdout.flush()
+    sys.stdout.flush()
 
 	# wait on a bit
 	time.sleep(readInterval)

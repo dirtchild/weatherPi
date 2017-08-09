@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # reads data from wind direction thingy (see README)
-# labels follow those set out in the Wunderground PWS API: 
+# labels follow those set out in the Wunderground PWS API:
 #	http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
 #
 # SOURCES:
@@ -12,7 +12,7 @@
 # CREATED: 2017-08-02
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-from SensorData import SensorReading 
+from SensorData import SensorReading
 from convertors import *
 import time
 import Adafruit_ADS1x15
@@ -47,7 +47,6 @@ def getReading():
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
-	#DEBUG - the UV output is wrong
+	#DEBUG - the UV/solarradiation output is wrong
 	print "avgVoltage[%.2f] = totalVoltage[%.2f] / cnt[%.2f]" % (avgVoltage,totalVoltage,cnt)
-	return(SensorReading("uv", "UV", voltToUvIndex(avgVoltage), "index [DEBUG: bad math]"))
-
+	return(SensorReading("uv", "UV", voltToUvIndex(avgVoltage), "index [DEBUG: bad math]"),SensorReading("solarradiation", "solarradiation", avgVoltage, "W/m^2 [DEBUG: bad math]"))
