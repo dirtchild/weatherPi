@@ -106,46 +106,50 @@ while True:
 		except:
 			print("Exception:", sys.exc_info()[0], "\n")
 
-		# write to our database
+	# write to our database
 	if DATABASE_UPLOAD == True:
-		# DB connection
-		db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
-		dbCursor = db.cursor()
-		#DEBUG:  %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s
-		sql = "insert into %s VALUES(Null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % \
-			(db_table,\
-			winddir,\
-			windspeedmph,\
-			windgustmph,\
-			windgustdir,\
-			windspdmph_avg2m,\
-			winddir_avg2m,\
-			windgustmph_10m,\
-			windgustdir_10m,\
-			humidity,\
-			dewptf,\
-			tempf,\
-			rainin,\
-			dailyrainin,\
-			baromin,\
-			weather,\
-			clouds,\
-			soiltempf,\
-			soilmoisture,\
-			leafwetness,\
-			solarradiation,\
-			UV,\
-			visibility,\
-			indoortempf,\
-			indoorhumidity)
-		number_of_rows = dbCursor.execute(sql)
-		db.commit()
-		# clean up after ourselves
-		db.close()
+		try:
+			# DB connection
+			db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
+			dbCursor = db.cursor()
+			#DEBUG:  %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s
+			sql = "insert into %s VALUES(Null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % \
+				(db_table,\
+				winddir,\
+				windspeedmph,\
+				windgustmph,\
+				windgustdir,\
+				windspdmph_avg2m,\
+				winddir_avg2m,\
+				windgustmph_10m,\
+				windgustdir_10m,\
+				humidity,\
+				dewptf,\
+				tempf,\
+				rainin,\
+				dailyrainin,\
+				baromin,\
+				weather,\
+				clouds,\
+				soiltempf,\
+				soilmoisture,\
+				leafwetness,\
+				solarradiation,\
+				UV,\
+				visibility,\
+				indoortempf,\
+				indoorhumidity)
+			number_of_rows = dbCursor.execute(sql)
+			db.commit()
+			# clean up after ourselves
+			db.close()
+		except:
+			print("Exception:", sys.exc_info()[0], "\n")
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
-    sys.stdout.flush()
+        
+        sys.stdout.flush()
 
 	# wait on a bit
 	time.sleep(readInterval)
