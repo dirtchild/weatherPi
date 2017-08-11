@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # reads data from wind direction thingy (see README)
-# labels follow those set out in the Wunderground PWS API: 
+# labels follow those set out in the Wunderground PWS API:
 #	http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
 #
 # SOURCES:
@@ -9,7 +9,7 @@
 # CREATED: 2017-08-02
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-from SensorData import SensorReading 
+from SensorData import SensorReading
 import time
 import Adafruit_ADS1x15
 
@@ -23,7 +23,7 @@ def getReading():
 	#  -   8 = +/-0.512V
 	#  -  16 = +/-0.256V
 	# See table 3 in the ADS1015/ADS1115 datasheet for more info on gain.
-	GAIN = 1
+	GAIN = 2/3
 
 	# the channel on the ADC to use
 	CHANNEL = 0
@@ -44,5 +44,4 @@ def getReading():
 	avgVoltage = totalVoltage / cnt
 
 	# DEBUG: should be voltToDeg(avgVoltage) once the bad things are worked out
-	return(SensorReading("winddir", "winddir", avgVoltage, "degree angle [DEBUG: avgVoltage]"))
-
+	return(SensorReading("winddir", "winddir", voltToDeg(avgVoltage), "degree angle [DEBUG: avgVoltage]"))

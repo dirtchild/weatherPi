@@ -59,4 +59,6 @@ def voltToDeg(v):
     voltToDegree["4.04"] = 292.5
     voltToDegree["4.78"] = 315.0
     voltToDegree["3.43"] = 337.5
-    return (voltToDegree["v"])
+    #return (voltToDegree["v"])
+    #DEBUG: until this gets sorted out
+    return(v)
