@@ -4,6 +4,8 @@
 # a lot of this is taken from the following, and modified to suit:
 #	https://sourceforge.net/projects/meta-tools/files/pyweather/0.7.0/
 
+import math
+
 # celcius to farenheight
 def c_to_f(input_temp):
     return (input_temp * 1.8) + 32
@@ -25,7 +27,7 @@ def voltToUvIndex(v):
     out_min = 0.0
     out_max = 15.0
     # seemed like it was off by 1k. so I twiddled
-    return (int(round(((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)/1000)))
+    return (int(math.ceil(((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)/1000)))
 
 def dewpointF(tempF, hum):
     c = f_to_c(tempF)
