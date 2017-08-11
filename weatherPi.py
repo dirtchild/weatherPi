@@ -39,7 +39,7 @@ while True:
 
 	# setup our reading variables to make things better for human brains
 	# and to amke the rest of this easier
-	tempf = (mplTem.value + dhtTem.value) / 2
+	tempf = (mplTem.value + dhtTem.value) / 2 # average both internal temp readings
 	winddir = windDir.value
 	windspeedmph = windSpeedNow.value
 	windgustmph = "Null"
@@ -63,7 +63,7 @@ while True:
 	indoortempf = "Null"
 	indoorhumidity = "Null"
 
-        sys.stdout.flush()
+    sys.stdout.flush()
 
 	# do the work
 	if WUNDERGROUND_UPLOAD == True:
