@@ -24,10 +24,8 @@ def voltToUvIndex(v):
     in_max = 2.9
     out_min = 0.0
     out_max = 15.0
-    return ((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
-
-def voltToDegree(v):
-    print ("degree)")
+    # seemed like it was off by 1k. so I twiddled
+    return (int(((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)/1000))
 
 def dewpointF(tempF, hum):
     c = f_to_c(tempF)

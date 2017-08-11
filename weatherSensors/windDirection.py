@@ -12,6 +12,7 @@
 from SensorData import SensorReading
 import time
 import Adafruit_ADS1x15
+import convertors 
 
 def getReading():
 	# Choose a gain of 1 for reading voltages from 0 to 4.09V.
@@ -44,4 +45,4 @@ def getReading():
 	avgVoltage = totalVoltage / cnt
 
 	# DEBUG: should be voltToDeg(avgVoltage) once the bad things are worked out
-	return(SensorReading("winddir", "winddir", voltToDeg(avgVoltage), "degree angle [DEBUG: avgVoltage]"))
+	return(SensorReading("winddir", "winddir", convertors.voltToDeg(avgVoltage), "degree angle [DEBUG: avgVoltage]"))

@@ -63,7 +63,7 @@ while True:
 	indoortempf = "Null"
 	indoorhumidity = "Null"
 
-    sys.stdout.flush()
+        sys.stdout.flush()
 
 	# do the work
 	if WUNDERGROUND_UPLOAD == True:
