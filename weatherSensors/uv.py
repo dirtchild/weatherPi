@@ -47,6 +47,4 @@ def getReading():
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
-	#DEBUG - the UV/solarradiation output is wrong
-	print "avgVoltage[%.2f] = totalVoltage[%.2f] / cnt[%.2f]" % (avgVoltage,totalVoltage,cnt)
 	return(SensorReading("uv", "UV", voltToUvIndex(avgVoltage), "index [DEBUG: bad math]"),SensorReading("solarradiation", "solarradiation", avgVoltage, "W/m^2 [DEBUG: bad math]"))

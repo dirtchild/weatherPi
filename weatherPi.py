@@ -32,7 +32,7 @@ while True:
 	mplTem,mplPres,mplAlt = MPL3115A2.getReading()
 	UV,solarradiation = uv.getReading()
 	windDir = windDirection.getReading()
-	windSpeedNow = wSpeed.getPeriodAverage("windSpeedNow",10)
+	windSpeedNow = wSpeed.getPeriodAverage("windSpeedNow",30)
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
 	rainIn = rain.getPeriodTotal("rainIn", 3600)
 	dailyrainin = convertors.mmToInches(rain.getPeriodTotal("dailyrainin", 86400).value)
@@ -148,7 +148,7 @@ while True:
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
-        
+
         sys.stdout.flush()
 
 	# wait on a bit

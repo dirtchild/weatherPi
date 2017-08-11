@@ -9,20 +9,22 @@ def c_to_f(input_temp):
     return (input_temp * 1.8) + 32
 
 def f_to_c(input_temp):
-    return (input_temp - 32) / 1.8   
+    return (input_temp - 32) / 1.8
 
 def kpaToInches(kpa):
    return kpa * 0.295301
 
-def mmToInches(mm):    
+def mmToInches(mm):
     return float(mm) * 0.039370
 
 def voltToUvIndex(v):
-    # DEBUG - taken from one of the links in weatherSensors.uv - it's not giving the correct output
-    # that's either because:
-    #   * UV read gain is wrong
-    #   * this is wrong
-    return ((v - 1) * 25 / 3.0)
+    # DEBUG. taken from: https://docs.bsfrance.fr/documentation/10454_GYML8511/MP8511_Read_Example.ino
+    # no idea how it works, but it's used ina  few places, so copy and paste!
+    in_min = 0.99
+    in_max = 2.9
+    out_min = 0.0
+    out_max = 15.0
+    return ((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 def voltToDegree(v):
     print ("degree)")
