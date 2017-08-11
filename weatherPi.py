@@ -42,26 +42,26 @@ while True:
 	tempf = (mplTem.value + dhtTem.value) / 2 # average both internal temp readings
 	winddir = windDir.value
 	windspeedmph = windSpeedNow.value
-	windgustmph = "Null"
-	windgustdir = "Null"
+	windgustmph = "--"
+	windgustdir = "--"
 	windspdmph_avg2m = windSpdMph_avg2m.value
-	winddir_avg2m = "Null"
-	windgustmph_10m = "Null"
-	windgustdir_10m = "Null"
+	winddir_avg2m = "--"
+	windgustmph_10m = "--"
+	windgustdir_10m = "--"
 	humidity = dhtHum.value
 	dewptf = convertors.dewpointF(tempf, dhtHum.value)
 	rainin = convertors.mmToInches(rainIn.value)
 	baromin = mplPres.value
-	weather = "Null"
-	clouds = "Null"
-	soiltempf = "Null"
-	soilmoisture = "Null"
-	leafwetness = "Null"
+	weather = "--"
+	clouds = "--"
+	soiltempf = "--"
+	soilmoisture = "--"
+	leafwetness = "--"
 	solarradiation = solarradiation.value
 	UV = UV.value
-	visibility = "Null"
-	indoortempf = "Null"
-	indoorhumidity = "Null"
+	visibility = "--"
+	indoortempf = "--"
+	indoorhumidity = "--"
 
         sys.stdout.flush()
 
