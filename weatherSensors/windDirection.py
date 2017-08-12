@@ -13,6 +13,7 @@ from SensorData import SensorReading
 import time
 import Adafruit_ADS1x15
 import convertors 
+import windDirection
 
 def getReading():
 	# Choose a gain of 1 for reading voltages from 0 to 4.09V.
@@ -37,7 +38,13 @@ def getReading():
 	totalVoltage = 0
 	cnt = 0
 	while (time.time() - start) <= 5.0:
-	    totalVoltage += adc.get_last_result()
+            # will sometimes give negative results
+            thisRead = -1
+            while thisRead < 1: 
+                thisRead = adc.get_last_result() 
+            #DEBUG
+            print("WD DEBUG[",cnt,thisRead,"]")
+	    totalVoltage += thisRead 
 	    cnt += 1
 	    time.sleep(0.5)
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
@@ -45,4 +52,12 @@ def getReading():
 	avgVoltage = totalVoltage / cnt
 
 	# DEBUG: should be voltToDeg(avgVoltage) once the bad things are worked out
+        #DEBUG
+        print("DEBUG WD OUT: avgVoltage(",avgVoltage,") = totalVoltage(",totalVoltage,") / cnt(",cnt,")")
 	return(SensorReading("winddir", "winddir", convertors.voltToDeg(avgVoltage), "degree angle [DEBUG: avgVoltage]"))
+    
+# for testing
+def main():
+    print("in main windDirection")
+    windDirection.getReading()
+if __name__ == "__main__": main()
