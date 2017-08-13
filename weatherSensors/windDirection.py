@@ -28,7 +28,7 @@ def getReading():
 	#  -   8 = +/-0.512V
 	#  -  16 = +/-0.256V
 	# See table 3 in the ADS1015/ADS1115 datasheet for more info on gain.
-	GAIN = 1
+	GAIN = 16
 
 	# the channel on the ADC to use
 	CHANNEL = 0
@@ -45,20 +45,19 @@ def getReading():
             thisRead = -1
             while thisRead < 1:
                 thisRead = adc.get_last_result()
-            #DEBUG
-            print("WD DEBUG[",cnt,thisRead,"]")
-	    totalVoltage += thisRead
+            #DEBUG: finding they are about a decimal place out
+            #DEBUG: hacky
+            totalVoltage += thisRead / 10 #DEBUG: /10 to get it into a measurable range. this is bad and wrong
 	    cnt += 1
 	    time.sleep(0.5)
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
 
-	print("WD OUT: avgVoltage(",avgVoltage,") = totalVoltage(",totalVoltage,") / cnt(",cnt,")")
-	return(SensorReading("winddir", "winddir", convertors.voltToDeg(avgVoltage,WIND_READ_VOLT,WIND_DIR_MOUNT_ADJ), "degree angle [DEBUG: avgVoltage]"))
+	return(SensorReading("winddir", "winddir", convertors.voltToDeg(avgVoltage,WIND_READ_VOLT,WIND_DIR_MOUNT_ADJ), "degree angle"))
 
 # for testing
 def main():
-    print("in main windDirection")
+    print("in windDirection.main()")
     print(windDirection.getReading())
 if __name__ == "__main__": main()
