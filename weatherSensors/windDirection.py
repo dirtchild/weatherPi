@@ -14,6 +14,9 @@ import time
 import Adafruit_ADS1x15
 import convertors
 import windDirection
+import sys
+sys.path.append("../")
+from config import *
 
 def getReading():
 	# Choose a gain of 1 for reading voltages from 0 to 4.09V.
