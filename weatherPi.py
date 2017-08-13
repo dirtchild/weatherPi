@@ -103,8 +103,8 @@ while True:
 			html = response.read()
 			#print("Server response:", html)
 			response.close()  # best practice to close the file
-		except:
-			print("Exception:", sys.exc_info()[0], "\n")
+		except Exception, e:
+			print("Wunderground Exception:", str(e)) 
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
