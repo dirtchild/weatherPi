@@ -27,7 +27,7 @@ def voltToUvIndex(v):
     out_min = 0.0
     out_max = 15.0
     # seemed like it was off by 1k. so I twiddled
-    return (int(math.ceil(((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)/1000)))
+    return (round(((v - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)/1000,2))
 
 def dewpointF(tempF, hum):
     c = f_to_c(tempF)
