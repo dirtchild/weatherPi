@@ -1,7 +1,7 @@
 # database stuff for remote DB hosting
 db_pwd = ""
 db_db = ""
-db_user = ""	
+db_user = ""
 db_host = ""
 db_table = "sonsor_reading"
 
@@ -28,6 +28,8 @@ wu_station_key = ""
 # 90000 = 25 hours
 W_SPD_EVENTS_PERIOD = 720
 RAIN_EVENTS_PERIOD = 90000
- 
 
 
+# for wind direction readings
+WIND_READ_VOLT = 3.3 # whatever you are running the ADC at
+WIND_DIR_MOUNT_ADJ = 0 # degrees to adjust things based on shoddy installation

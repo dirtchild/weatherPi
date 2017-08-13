@@ -42,15 +42,18 @@ def dewpointF(tempF, hum):
 # everything from here down is borrowed from:
 #   https://github.com/kmkingsbury/raspberrypi-weather-station/issues/8#issuecomment-169661343
 #
-def voltToDeg(v):
+def voltToDeg(vRead,vPower,dirAdjust):
     global lastwinddir
-    winddir_voltage = ConvertVoltage (float(v), 3.3)
+    #DEBUG: need to get this value from way up in the main main()
+    #DEBUG: fudged when testing because effort
+    lastwinddir = 0
+    winddir_voltage = ConvertVoltage (float(vRead), vPower)
     winddir = voltageToDegrees(winddir_voltage, lastwinddir)
     #Mounted windvane improperly (not facing north) so adjusting in the software
-    ##DEBUGwinddir = AdjustWindDir(winddir, 87)
+    winddir = AdjustWindDir(winddir, dirAdjust)
     lastwinddir = winddir
-    capitalwinddir = windDirectionFromDegrees(winddir)
-    return(capitalwinddir)
+    #DEBUG, needed?: capitalwinddir = windDirectionFromDegrees(winddir)
+    return(winddir)
 
 
 # convert light into percent
