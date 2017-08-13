@@ -42,26 +42,26 @@ while True:
 	tempf = (mplTem.value + dhtTem.value) / 2 # average both internal temp readings
 	winddir = windDir.value
 	windspeedmph = windSpeedNow.value
-	windgustmph = "--"
-	windgustdir = "--"
+	windgustmph = "Null"
+	windgustdir = "Null"
 	windspdmph_avg2m = windSpdMph_avg2m.value
-	winddir_avg2m = "--"
-	windgustmph_10m = "--"
-	windgustdir_10m = "--"
+	winddir_avg2m = "Null"
+	windgustmph_10m = "Null"
+	windgustdir_10m = "Null"
 	humidity = dhtHum.value
 	dewptf = convertors.dewpointF(tempf, dhtHum.value)
 	rainin = convertors.mmToInches(rainIn.value)
 	baromin = mplPres.value
-	weather = "--"
-	clouds = "--"
-	soiltempf = "--"
-	soilmoisture = "--"
-	leafwetness = "--"
+	weather = "Null"
+	clouds = "Null"
+	soiltempf = "Null"
+	soilmoisture = "Null"
+	leafwetness = "Null"
 	solarradiation = solarradiation.value
 	UV = UV.value
-	visibility = "--"
-	indoortempf = "--"
-	indoorhumidity = "--"
+	visibility = "Null"
+	indoortempf = "Null"
+	indoorhumidity = "Null"
 
         sys.stdout.flush()
 
@@ -143,8 +143,8 @@ while True:
 			db.commit()
 			# clean up after ourselves
 			db.close()
-		except:
-			print("Exception:", sys.exc_info()[0], "\n")
+		except Exception, e:
+			print("Mysql Exception:",str(e)) 
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
