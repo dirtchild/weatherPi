@@ -60,5 +60,5 @@ def getReading():
 # for testing
 def main():
     print("in main windDirection")
-    windDirection.getReading()
+    print(windDirection.getReading())
 if __name__ == "__main__": main()
