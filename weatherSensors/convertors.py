@@ -38,27 +38,120 @@ def dewpointF(tempF, hum):
     dewpoint = c - dewpoint;
     return c_to_f(dewpoint)
 
+#####################################################
+# everything from here down is borrowed from:
+#   https://github.com/kmkingsbury/raspberrypi-weather-station/issues/8#issuecomment-169661343
+#
 def voltToDeg(v):
-    # scaling and transposing voltage reading to actual direction
-    # based on 5v supply, 100k resistor (needs scaling) - see: https://www.argentdata.com/files/80422_datasheet.pdf
-    # will be (degree|voltage)
-    voltToDegree = {}
-    voltToDegree["3.84"] = 0.0
-    voltToDegree["1.98"] = 22.5
-    voltToDegree["2.25"] = 45.0
-    voltToDegree["0.41"] = 67.5
-    voltToDegree["0.45"] = 90.0
-    voltToDegree["0.32"] = 112.5
-    voltToDegree["0.90"] = 135.0
-    voltToDegree["0.62"] = 157.5
-    voltToDegree["1.40"] = 180.0
-    voltToDegree["1.19"] = 202.5
-    voltToDegree["3.08"] = 225.0
-    voltToDegree["2.93"] = 247.5
-    voltToDegree["4.62"] = 270.0
-    voltToDegree["4.04"] = 292.5
-    voltToDegree["4.78"] = 315.0
-    voltToDegree["3.43"] = 337.5
-    #return (voltToDegree["v"])
-    #DEBUG: until this gets sorted out
-    return(v)
+    global lastwinddir
+    winddir_voltage = ConvertVoltage (float(v), 3.3)
+    winddir = voltageToDegrees(winddir_voltage, lastwinddir)
+    #Mounted windvane improperly (not facing north) so adjusting in the software
+    ##DEBUGwinddir = AdjustWindDir(winddir, 87)
+    lastwinddir = winddir
+    capitalwinddir = windDirectionFromDegrees(winddir)
+    return(capitalwinddir)
+
+
+# convert light into percent
+def ConvertVoltage(data, supplyVolt):
+  voltage = data/1024. * supplyVolt #// convert to voltage value
+  return voltage
+
+def ConvertPercent (data, supplyVolt, places):
+  percent = (data / supplyVolt) * 100
+  percent = round(percent,places)
+  return percent
+
+def fuzzyCompare(compareValue, value):
+    VARYVALUE = 0.05
+    if ( (value > (compareValue * (1.0-VARYVALUE)))  and (value < (compareValue *(1.0+VARYVALUE))) ):
+        return True
+    return False
+
+def voltageToDegrees(value, defaultWindDirection):
+    ADJUST3OR5 = 0.66
+    PowerVoltage = 3.3
+    if (fuzzyCompare(3.84 * ADJUST3OR5, value)):
+        return 0.0
+    if (fuzzyCompare(1.98 * ADJUST3OR5, value)):
+        return 22.5
+    if (fuzzyCompare(2.25 * ADJUST3OR5, value)):
+        return 45
+    if (fuzzyCompare(0.41 * ADJUST3OR5, value)):
+        return 67.5
+    if (fuzzyCompare(0.45 * ADJUST3OR5, value)):
+        return 90.0
+    if (fuzzyCompare(0.32 * ADJUST3OR5, value)):
+        return 112.5
+    if (fuzzyCompare(0.90 * ADJUST3OR5, value)):
+        return 135.0
+    if (fuzzyCompare(0.62 * ADJUST3OR5, value)):
+        return 157.5
+    if (fuzzyCompare(1.40 * ADJUST3OR5, value)):
+        return 180
+    if (fuzzyCompare(1.19 * ADJUST3OR5, value)):
+        return 202.5
+    if (fuzzyCompare(3.08 * ADJUST3OR5, value)):
+        return 225
+    if (fuzzyCompare(2.93 * ADJUST3OR5, value)):
+        return 247.5
+    if (fuzzyCompare(4.62 * ADJUST3OR5, value)):
+        return 270.0
+    if (fuzzyCompare(4.04 * ADJUST3OR5, value)):
+        return 292.5
+    if (fuzzyCompare(4.34 * ADJUST3OR5, value)): # chart in manufacturers documentation wrong
+        return 315.0
+    if (fuzzyCompare(3.43 * ADJUST3OR5, value)):
+        return 337.5
+    return defaultWindDirection  # return previous value if not found
+
+def windDirectionFromDegrees (Degrees):
+    if (348.75 <= Degrees <= 360.00):
+        hour1WindDirection = "N"
+    elif (0 <= Degrees <= 11.25):
+        hour1WindDirection = "N"
+    elif (11.25 < Degrees <= 33.75):
+        hour1WindDirection = "NNE"
+    elif (33.75 < Degrees <= 56.25):
+        hour1WindDirection = "NE"
+    elif (56.25 < Degrees <= 78.75):
+        hour1WindDirection = "ENE"
+    elif (78.75 < Degrees <= 101.25):
+        hour1WindDirection = "E"
+    elif (101.25 < Degrees <= 123.75):
+        hour1WindDirection = "ESE"
+    elif (123.75 < Degrees <= 146.25):
+        hour1WindDirection = "SE"
+    elif (146.25 < Degrees <= 168.75):
+        hour1WindDirection = "SSE"
+    elif (168.75 < Degrees <= 191.25):
+        hour1WindDirection = "S"
+    elif (191.25 < Degrees <= 213.75):
+        hour1WindDirection = "SSW"
+    elif (213.75 < Degrees <= 236.25):
+        hour1WindDirection = "SW"
+    elif (236.25 < Degrees <= 258.75):
+        hour1WindDirection = "WSW"
+    elif (258.75 < Degrees <= 281.25):
+        hour1WindDirection = "W"
+    elif (281.25 < Degrees <= 303.75):
+        hour1WindDirection = "WNW"
+    elif (303.75 < Degrees <= 326.25):
+        hour1WindDirection = "NW"
+    elif (326.25 < Degrees < 348.75):
+        hour1WindDirection = "NNW"
+    else:
+        hour1WindDirection = nil
+    return hour1WindDirection
+
+def AdjustWindDir(data,adjustor):
+  #if current wind direction in degrees is less than 90
+  if (data < adjustor):
+    #add 360 before subtracting 90
+    adjustedwinddir = (data + 360.00) - adjustor
+  #otherwise, simply subtract 90
+  else:
+    adjustedwinddir = (data - adjustor)
+  #return the compensated value
+  return adjustedwinddir
