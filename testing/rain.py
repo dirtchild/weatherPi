@@ -6,6 +6,7 @@
 
 import RPi.GPIO as GPIO
 import time
+import sys
 
 # this many mm per bucket tip
 CALIBRATION = 0.2794
@@ -29,15 +30,17 @@ def cb(channel):
 GPIO.add_event_detect(PIN, GPIO.FALLING, callback=cb, bouncetime=300)
 
 # open the log file
-file = open(LOGFILE, "a")
+#file = open(LOGFILE, "a")
 
 # display and log results
 while True:
         line = "%s, %.2fmm" % (time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()),rain)
 	#line = "%i, %f" % (time.time(), rain)
 	print(line)
-	file.write(line + "\n")
-	file.flush()
+        sys.stdout.flush()
+
+	#file.write(line + "\n")
+	#file.flush()
 	rain = 0
 	time.sleep(5)
 
