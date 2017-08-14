@@ -42,7 +42,7 @@ class eventSensor:
 	def logSensorEvent(self,channel):
 		global sensorLog
 		#DEBUG
-		print("DEBUG RAIN EVENT")
+		print("DEBUG RAIN EVENT",len(self.sensorLog))
 		# add to the global sensor array
 		self.sensorLog.append(SensorReading(self.sensor,self.label,self.calibration,self.unit))
 		# remove last until no more older than periodToKeep
