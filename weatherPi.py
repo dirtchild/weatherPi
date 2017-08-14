@@ -23,6 +23,8 @@ import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
+#DEBUG
+print("[RAIN DEBUG][weatherPi]" about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
 rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
@@ -36,6 +38,8 @@ while True:
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
 	rainIn = rain.getPeriodTotal("rainIn", 3600)
 	dailyrainin = convertors.mmToInches(rain.getPeriodTotal("dailyrainin", 86400).value)
+	#DEBUG
+	print("[RAIN DEBUG][just read] rainIn[",rainIn,"] dailyrainin[",dailyrainin,"]")
 
 	# setup our reading variables to make things better for human brains
 	# and to amke the rest of this easier
@@ -104,7 +108,7 @@ while True:
 			#print("Server response:", html)
 			response.close()  # best practice to close the file
 		except Exception, e:
-			print("Wunderground Exception:", str(e)) 
+			print("Wunderground Exception:", str(e))
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
@@ -144,7 +148,7 @@ while True:
 			# clean up after ourselves
 			db.close()
 		except Exception, e:
-			print("Mysql Exception:",str(e)) 
+			print("Mysql Exception:",str(e))
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")

@@ -2,14 +2,14 @@
 
 # read data from an event driven sensor. Generalised for use with any event-based sensor
 #
-# SOURCES: 
+# SOURCES:
 #		* http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
 # RETURNS: SensorData.SensorReading object
 # CREATED: 2017-08-02
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 import RPi.GPIO as GPIO
-from SensorData import SensorReading 
+from SensorData import SensorReading
 import time
 
 class eventSensor:
@@ -28,7 +28,7 @@ class eventSensor:
 		self.sensorLog = []
 		self.periodToKeep = periodToKeep
 
-		GPIO.setmode(GPIO.BCM)  
+		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(self.gpioToRead, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 		GPIO.add_event_detect(self.gpioToRead, GPIO.FALLING, callback=self.logSensorEvent, bouncetime=300)
 
@@ -37,10 +37,12 @@ class eventSensor:
 
 	def __repr__(self):
 		return "[eventSensor]\n\tself.gpioToRead [",self.gpioToRead,"]\n\t self.calibration [",self.calibration,"]\n\t self.sensor [",self.sensor,"]\n\t self.label [",self.label,"]\n\t self.unit [",self.unit,"]"
-        
+
 	# the call back function for each bucket tip
 	def logSensorEvent(self,channel):
 		global sensorLog
+		#DEBUG
+		print("DEBUG RAIN EVENT")
 		# add to the global sensor array
 		self.sensorLog.append(SensorReading(self.sensor,self.label,self.calibration,self.unit))
 		# remove last until no more older than periodToKeep
@@ -53,7 +55,7 @@ class eventSensor:
 		global sensorLog
 		thisSum=0
 		# need to have some readings for this to make sense
-		if len(self.sensorLog) > 0:	
+		if len(self.sensorLog) > 0:
 			for thisReading in self.sensorLog:
 				if (time.time() - thisReading.timeStamp) <= period:
 					thisSum += thisReading.value
@@ -66,7 +68,7 @@ class eventSensor:
 		thisSum=0
 		cnt=0
 		# need to have some readings for this to make sense
-		if len(self.sensorLog) > 0:	
+		if len(self.sensorLog) > 0:
 			for thisReading in self.sensorLog:
 				if (time.time() - thisReading.timeStamp) <= period:
 					thisSum += thisReading.value
@@ -80,5 +82,3 @@ class eventSensor:
 			return(self.sensorLog[-1])
 		else:
 			return(SensorReading(self.sensor,self.label,0,self.unit))
-
-
