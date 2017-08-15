@@ -24,7 +24,7 @@ import urllib2
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
 #DEBUG
-print("[RAIN DEBUG][weatherPi]" about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
+print("[RAIN DEBUG][weatherPi] about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
 rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
@@ -126,7 +126,7 @@ while True:
 			"rainin": str(rainin),
 			"dailyrainin": str(dailyrainin),
 			"baromin": str(baromin)}
-
+		try:
 			upload_url = WOW_URL + "?" + urlencode(weather_data_wow)
 			response = urllib2.urlopen(upload_url)
 			html = response.read()
