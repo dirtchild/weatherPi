@@ -110,7 +110,7 @@ while True:
 			print("Wunderground Exception:", str(e))
 
 	if WOW_UPLOAD == True:
-		# write to wunderground
+		# write to WOW: http://wow.metoffice.gov.uk/support/dataformats#automatic
 		weather_data_wow = {
 			"siteid": WOW_STATION_ID,
 			"siteAuthenticationKey": WOW_STATION_KEY,
