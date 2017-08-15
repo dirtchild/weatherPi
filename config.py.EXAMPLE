@@ -16,12 +16,19 @@ RAIN_GPIO = 6
 readInterval = 60
 
 # set to true to start sending stuff to wunderground
-WEATHER_UPLOAD = True
+WUNDERGROUND_UPLOAD = True
+WOW_UPLOAD = True
+DATABASE_UPLOAD = True
 
 # the weather underground settings
 WU_URL = "http://weatherstation.wunderground.com/weatherstation/updateweatherstation.php"
-wu_station_id = ""
-wu_station_key = ""
+WU_STATION_ID = ""
+WU_STATION_KEY = ""
+
+# the metoffice settings
+WOW_URL = "http://wow.metoffice.gov.uk/automaticreading"
+WOW_STATION_ID = ""
+WOW_STATION_KEY = ""
 
 # age of event objects to keep, in seconds
 # 720 = 12 minutes

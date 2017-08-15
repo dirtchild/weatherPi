@@ -72,7 +72,7 @@ while True:
 	# do the work
 	if WUNDERGROUND_UPLOAD == True:
 		# write to wunderground
-		weather_data = {
+		weather_data_wu = {
 			"action": "updateraw",
 			"ID": WU_STATION_ID,
 			"PASSWORD": WU_STATION_KEY,
@@ -102,13 +102,37 @@ while True:
 			"indoortempf": str(indoortempf),
 			"indoorhumidity": str(indoorhumidity)}
 		try:
-			upload_url = WU_URL + "?" + urlencode(weather_data)
+			upload_url = WU_URL + "?" + urlencode(weather_data_wu)
 			response = urllib2.urlopen(upload_url)
 			html = response.read()
-			#print("Server response:", html)
 			response.close()  # best practice to close the file
 		except Exception, e:
 			print("Wunderground Exception:", str(e))
+
+	if WOW_UPLOAD == True:
+		# write to wunderground
+		weather_data_wow = {
+			"siteid": WOW_STATION_ID,
+			"siteAuthenticationKey": WOW_STATION_KEY,
+			"dateutc": datetime.now().strftime("%Y-%d-%w %H:%M:%S"),
+			"softwaretype": "custom",
+			"winddir": str(winddir),
+			"windspeedmph": str(windspeedmph),
+			"windgustmph": str(windgustmph),
+			"windgustdir": str(windgustdir),
+			"humidity": str(humidity),
+			"dewptf": str(dewptf),
+			"tempf": str(tempf),
+			"rainin": str(rainin),
+			"dailyrainin": str(dailyrainin),
+			"baromin": str(baromin)}
+
+			upload_url = WOW_URL + "?" + urlencode(weather_data_wow)
+			response = urllib2.urlopen(upload_url)
+			html = response.read()
+			response.close()  # best practice to close the file
+		except Exception, e:
+			print("WOW Exception:", str(e))
 
 	# write to our database
 	if DATABASE_UPLOAD == True:

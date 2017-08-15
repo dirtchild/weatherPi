@@ -8,8 +8,9 @@ The code should be relatively well documented and easy to follow. The main funci
 
 1. Read all attached sensors
 1. Send the gathered data to
-    * weather underground 
-    * a remote database (I use this to generate a basic current conditions page). 
+    * weather underground
+    * Metoffice WOW service (UK)
+    * a remote database (I use this to generate a basic current conditions page).
 
 ## Python Module Dependencies
 
@@ -38,4 +39,4 @@ The hardware used in this project, in no particular order:
 ## Design
 Various design diagrams are in the DesignDocs directory, they may help someone. All sensor data passing is carried out using a custom data structure, SensorData. For consistency (and because data is uploaded to Wunderground), I use the labels set out in the [Weather Underground PWS API](http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol) when dealing with labeled sensor readings e.g. `baromin` for barometric pressure. The units defined by the wunderground API are also used for consistency if nothing more (even though it feels wrong to be using imperial measurements it's easy enough to convert things to something more sensible on display).
 
-Note that there are two temperature sensors in use here (not by design - the humidity and barometric pressure sensors came with extras). These are mounted in the enclosure with the rPi/rest of the internals. Although there is a fan and all endeavours have been made to equyalise the temperature inside the casing with the outside air (venting, painted white, fan etc), both readings are averaged and then normalised against the CPU temperature to try and get an actual air temperature. 
+Note that there are two temperature sensors in use here (not by design - the humidity and barometric pressure sensors came with extras). These are mounted in the enclosure with the rPi/rest of the internals. Although there is a fan and all endeavours have been made to equyalise the temperature inside the casing with the outside air (venting, painted white, fan etc), both readings are averaged and then normalised against the CPU temperature to try and get an actual air temperature.
