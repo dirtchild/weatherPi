@@ -1,2 +1,0 @@
-def doThing():
-   print "THING!"
