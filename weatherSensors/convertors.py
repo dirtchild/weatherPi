@@ -20,8 +20,8 @@ def mmToInches(mm):
     return float(mm) * 0.039370
 
 def voltToUvIndex(v):
-    # DEBUG. taken from: https://docs.bsfrance.fr/documentation/10454_GYML8511/MP8511_Read_Example.ino
-    # no idea how it works, but it's used ina  few places, so copy and paste!
+    # taken from: https://docs.bsfrance.fr/documentation/10454_GYML8511/MP8511_Read_Example.ino
+    # no idea how it works, but it's used in a few places, so copy and paste!
     in_min = 0.99
     in_max = 2.9
     out_min = 0.0
@@ -52,7 +52,6 @@ def voltToDeg(vRead,vPower,dirAdjust):
     #Mounted windvane improperly (not facing north) so adjusting in the software
     winddir = AdjustWindDir(winddir, dirAdjust)
     lastwinddir = winddir
-    #DEBUG, needed?: capitalwinddir = windDirectionFromDegrees(winddir)
     return(winddir)
 
 

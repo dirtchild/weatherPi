@@ -23,8 +23,6 @@ import urllib2
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
-#DEBUG
-print("[DEBUG][weatherPi] about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
 rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
@@ -38,8 +36,6 @@ while True:
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
 	rainIn = rain.getPeriodTotal("rainIn", 3600)
 	dailyrainin = convertors.mmToInches(rain.getPeriodTotal("dailyrainin", 86400).value)
-	#DEBUG
-	print("[RAIN DEBUG][just read] rainIn[",rainIn,"] dailyrainin[",dailyrainin,"]")
 
 	# setup our reading variables to make things better for human brains
 	# and to amke the rest of this easier
@@ -114,7 +110,7 @@ while True:
 		weather_data_wow = {
 			"siteid": WOW_STATION_ID,
 			"siteAuthenticationKey": WOW_STATION_KEY,
-			"dateutc": datetime.now().strftime("%Y-%d-%w %H:%M:%S"),
+			"dateutc": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 			"softwaretype": "custom",
 			"winddir": str(winddir),
 			"windspeedmph": str(windspeedmph),
@@ -140,7 +136,6 @@ while True:
 			# DB connection
 			db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
 			dbCursor = db.cursor()
-			#DEBUG:  %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s
 			sql = "insert into %s VALUES(Null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % \
 				(db_table,\
 				winddir,\

@@ -12,8 +12,9 @@ logFile="/var/log/weatherData.log"
 RAIN_CALIBRATION = 0.2794
 RAIN_GPIO = 6
 
-# how often are we going to be reading our data from teh outside world, in seconds
-readInterval = 60
+# how often are we going to be reading and sending our data
+# in seconds
+readInterval = 300
 
 # set to true to start sending stuff to wunderground
 WUNDERGROUND_UPLOAD = True
