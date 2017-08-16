@@ -42,7 +42,7 @@ class eventSensor:
 	def logSensorEvent(self,channel):
 		global sensorLog
 		#DEBUG
-		print("DEBUG RAIN EVENT",len(self.sensorLog))
+		print("[DEBUG][eventSensor] [",self.label,"] EVENT. self.calibration[",self.calibration,"] log length[",len(self.sensorLog),"]")
 		# add to the global sensor array
 		self.sensorLog.append(SensorReading(self.sensor,self.label,self.calibration,self.unit))
 		# remove last until no more older than periodToKeep
@@ -59,6 +59,8 @@ class eventSensor:
 			for thisReading in self.sensorLog:
 				if (time.time() - thisReading.timeStamp) <= period:
 					thisSum += thisReading.value
+		#DEBUG
+		print("[DEBUG][eventSensor] [",self.label,"] PERIOD TOTAL. thisSum[",thisSum,"]")
 		return(SensorReading(self.sensor,newLabel,thisSum,self.unit))
 
 	# label: as per wunderground
@@ -72,6 +74,8 @@ class eventSensor:
 			for thisReading in self.sensorLog:
 				if (time.time() - thisReading.timeStamp) <= period:
 					thisSum += thisReading.value
+		#DEBUG
+		print("[DEBUG][eventSensor] [",self.label,"] PERIOD AVG. thisSum[",thisSum,"]/period[",period,"]")
 		return(SensorReading(self.sensor,newLabel,thisSum/period,self.unit))
 
 	# label: as per wunderground
