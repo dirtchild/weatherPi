@@ -24,7 +24,7 @@ import urllib2
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
 #DEBUG
-print("[RAIN DEBUG][weatherPi]about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
+print("[DEBUG][weatherPi] about to create RAIN_GPIO[",RAIN_GPIO,"], RAIN_CALIBRATION[",RAIN_CALIBRATION,"]")
 rain = eventSensor.eventSensor(RAIN_GPIO, RAIN_CALIBRATION, "rain events", "rain", "mm", RAIN_EVENTS_PERIOD)
 
 # loop forever.
@@ -72,7 +72,7 @@ while True:
 	# do the work
 	if WUNDERGROUND_UPLOAD == True:
 		# write to wunderground
-		weather_data = {
+		weather_data_wu = {
 			"action": "updateraw",
 			"ID": WU_STATION_ID,
 			"PASSWORD": WU_STATION_KEY,
@@ -102,13 +102,37 @@ while True:
 			"indoortempf": str(indoortempf),
 			"indoorhumidity": str(indoorhumidity)}
 		try:
-			upload_url = WU_URL + "?" + urlencode(weather_data)
+			upload_url = WU_URL + "?" + urlencode(weather_data_wu)
 			response = urllib2.urlopen(upload_url)
 			html = response.read()
-			#print("Server response:", html)
 			response.close()  # best practice to close the file
 		except Exception, e:
 			print("Wunderground Exception:", str(e))
+
+	if WOW_UPLOAD == True:
+		# write to WOW: http://wow.metoffice.gov.uk/support/dataformats#automatic
+		weather_data_wow = {
+			"siteid": WOW_STATION_ID,
+			"siteAuthenticationKey": WOW_STATION_KEY,
+			"dateutc": datetime.now().strftime("%Y-%d-%w %H:%M:%S"),
+			"softwaretype": "custom",
+			"winddir": str(winddir),
+			"windspeedmph": str(windspeedmph),
+			"windgustmph": str(windgustmph),
+			"windgustdir": str(windgustdir),
+			"humidity": str(humidity),
+			"dewptf": str(dewptf),
+			"tempf": str(tempf),
+			"rainin": str(rainin),
+			"dailyrainin": str(dailyrainin),
+			"baromin": str(baromin)}
+		try:
+			upload_url = WOW_URL + "?" + urlencode(weather_data_wow)
+			response = urllib2.urlopen(upload_url)
+			html = response.read()
+			response.close()  # best practice to close the file
+		except Exception, e:
+			print("WOW Exception:", str(e))
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
