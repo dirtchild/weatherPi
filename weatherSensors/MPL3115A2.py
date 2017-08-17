@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # reads data from an adafruit DHT11 temp/humidity sensor
-# labels follow those set out in the Wunderground PWS API: 
+# labels follow those set out in the Wunderground PWS API:
 #	http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
 #
 # SOURCES:
@@ -13,7 +13,7 @@
 # CREATED: 2017-07-18
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
-from SensorData import SensorReading 
+from SensorData import SensorReading
 from convertors import *
 import smbus
 import time
@@ -63,7 +63,7 @@ def getReading():
 
 	# Convert the data to 20-bits
 	pres = ((data[1] * 65536) + (data[2] * 256) + (data[3] & 0xF0)) / 16
-	thisPressure = (pres / 4.0) / 1000.0
+	thisPressure = (pres / 4.0) / 3000.0
 
 	mplPres = SensorReading("MPL3115A2", "baromin", thisPressure, "hpa")
 	mplTem = SensorReading("MPL3115A2", "tempf", fTemp, "f")
