@@ -32,9 +32,9 @@ while True:
 	mplTem,mplPres,mplAlt = MPL3115A2.getReading()
 	UV,solarradiation = uv.getReading()
 	windDir = windDirection.getReading()
-	windSpeedNow = wSpeed.getPeriodAverage("windSpeedNow",30)
+	windSpeedNow = wSpeed.getPeriodAverage("windSpeedNow",readInterval)
 	windSpdMph_avg2m = wSpeed.getPeriodAverage("windSpdMph_avg2m",120)
-	rainIn = rain.getPeriodTotal("rainIn", 3600)
+	rainIn = rain.getPeriodTotal("rainIn", readInterval)
 	dailyrainin = convertors.mmToInches(rain.getPeriodTotal("dailyrainin", 86400).value)
 
 	# setup our reading variables to make things better for human brains
