@@ -1,6 +1,6 @@
-/var/log/weather.log
+/var/log/weather.log /var/log/wifi-quality.log
 {
-	rotate 48
+	rotate 24
 	missingok
 	dateext
 	notifempty
