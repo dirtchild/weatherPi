@@ -40,24 +40,32 @@ def getReading():
 	value = 0
 	totalVoltage = 0
 	cnt = 0
+	#DEBUG
+	print("[PRE]adc.get_last_result()[",adc.get_last_result(),"]")
 	while (time.time() - start) <= 5.0:
-            # will sometimes give negative results
-            thisRead = -1
-            while thisRead < 1:
-                thisRead = adc.get_last_result()
-            #DEBUG: finding they are about a decimal place out
-            #DEBUG: hacky
-            totalVoltage += thisRead / 10 #DEBUG: /10 to get it into a measurable range. this is bad and wrong
-	    cnt += 1
-	    time.sleep(0.5)
+		# will sometimes give negative results
+		thisRead = -1
+		while thisRead < 1:
+		    thisRead = adc.get_last_result()
+		#DEBUG: finding they are about a decimal place out
+		#DEBUG: hacky
+		#DEBUG
+		print(cnt,": thisRead[",thisRead,"]")
+		totalVoltage += thisRead / 10 #DEBUG: /10 to get it into a measurable range. this is bad and wrong
+		cnt += 1
+		time.sleep(0.5)
+	#DEBUG
+	print("[POST]adc.get_last_result()[",adc.get_last_result(),"]")
 	# Stop continuous conversion.  After this point you can't get data from get_last_result!
 	adc.stop_adc()
 	avgVoltage = totalVoltage / cnt
+
+	#DEBUG
+	print("avgVoltage[",avgVoltage,"] = totalVoltage[",totalVoltage,"] / cnt[",cnt,"] (G:[",GAIN,"] C:[",CHANNEL,"])")
 
 	return(SensorReading("winddir", "winddir", convertors.voltToDeg(avgVoltage,WIND_READ_VOLT,WIND_DIR_MOUNT_ADJ), "degree angle"))
 
 # for testing
 def main():
-    print("in windDirection.main()")
     print(windDirection.getReading())
 if __name__ == "__main__": main()
