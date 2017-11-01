@@ -55,7 +55,7 @@ def voltToDeg(vRead,vPower,dirAdjust):
     # needs full rework and testing
     #lastwinddir = 0
     winddir_voltage = ConvertVoltage (float(vRead), vPower)
-    winddir = voltageToDegrees(winddir_voltage, "ERR"")
+    winddir = voltageToDegrees(winddir_voltage, "ERR")
     #Mounted windvane improperly (not facing north) so adjusting in the software
     winddir = AdjustWindDir(winddir, dirAdjust)
     #lastwinddir = winddir
