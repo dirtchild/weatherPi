@@ -46,12 +46,19 @@ def voltToDeg(vRead,vPower,dirAdjust):
     global lastwinddir
     #DEBUG: need to get this value from way up in the main main()
     #DEBUG: fudged when testing because effort
-    lastwinddir = 0
+    # (2017-11-01) lastwinddir is used by voltageToDegrees(value,defaultWindDirection)
+    # it's what's returned when the measured voltage is not within the given range
+    # if I want to use the last wind direction (which kinda makes sense) it'll throw
+    # the output to mostly always show north. better to show an error in the results
+    # commented out any use of lastwinddir for now and using a hardcoded string instead.
+    # this gave me issues during the initial work so it was fudged in the hope it would suffice
+    # needs full rework and testing
+    #lastwinddir = 0
     winddir_voltage = ConvertVoltage (float(vRead), vPower)
-    winddir = voltageToDegrees(winddir_voltage, lastwinddir)
+    winddir = voltageToDegrees(winddir_voltage, "ERR"")
     #Mounted windvane improperly (not facing north) so adjusting in the software
     winddir = AdjustWindDir(winddir, dirAdjust)
-    lastwinddir = winddir
+    #lastwinddir = winddir
     return(winddir)
 
 
