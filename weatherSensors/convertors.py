@@ -55,7 +55,7 @@ def voltToDeg(vRead,vPower,dirAdjust):
     # needs full rework and testing
     #lastwinddir = 0
     winddir_voltage = ConvertVoltage (float(vRead), vPower)
-    winddir = voltageToDegrees(winddir_voltage, "ERR")
+    winddir = voltageToDegrees(winddir_voltage, 0)
     #Mounted windvane improperly (not facing north) so adjusting in the software
     winddir = AdjustWindDir(winddir, dirAdjust)
     #lastwinddir = winddir
@@ -155,6 +155,9 @@ def windDirectionFromDegrees (Degrees):
     return hour1WindDirection
 
 def AdjustWindDir(data,adjustor):
+  data = int(data)
+  adjustor = int(adjustor)
+
   #if current wind direction in degrees is less than 90
   if (data < adjustor):
     #add 360 before subtracting 90
