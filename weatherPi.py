@@ -69,34 +69,34 @@ while True:
 	if WUNDERGROUND_UPLOAD == True:
 		# write to wunderground
 		weather_data_wu = {
-			"action": "updateraw",
-			"ID": WU_STATION_ID,
-			"PASSWORD": WU_STATION_KEY,
-			"dateutc": "now",
-			"winddir": str(winddir),
-			"windspeedmph": str(windspeedmph),
-			"windgustmph": str(windgustmph),
-			"windgustdir": str(windgustdir),
-			"windspdmph_avg2m": str(windspdmph_avg2m),
-			"winddir_avg2m": str(winddir_avg2m),
-			"windgustmph_10m": str(windgustmph_10m),
-			"windgustdir_10m": str(windgustdir_10m),
-			"humidity": str(humidity),
-			"dewptf": str(dewptf),
-			"tempf": str(tempf),
-			"rainin": str(rainin),
-			"dailyrainin": str(dailyrainin),
-			"baromin": str(baromin),
-			"weather": str(weather),
-			"clouds": str(clouds),
-			"soiltempf": str(soiltempf),
-			"soilmoisture": str(soilmoisture),
-			"leafwetness": str(leafwetness),
-			"solarradiation": str(solarradiation),
-			"UV": str(UV),
-			"visibility": str(visibility),
-			"indoortempf": str(indoortempf),
-			"indoorhumidity": str(indoorhumidity)}
+			"action= "updateraw",
+			"ID= WU_STATION_ID,
+			"PASSWORD= WU_STATION_KEY,
+			"dateutc= "now",
+			"winddir= str(winddir),
+			"windspeedmph= str(windspeedmph),
+			"windgustmph= str(windgustmph),
+			"windgustdir= str(windgustdir),
+			"windspdmph_avg2m= str(windspdmph_avg2m),
+			"winddir_avg2m= str(winddir_avg2m),
+			"windgustmph_10m= str(windgustmph_10m),
+			"windgustdir_10m= str(windgustdir_10m),
+			"humidity= str(humidity),
+			"dewptf= str(dewptf),
+			"tempf= str(tempf),
+			"rainin= str(rainin),
+			"dailyrainin= str(dailyrainin),
+			"baromin= str(baromin),
+			"weather= str(weather),
+			"clouds= str(clouds),
+			"soiltempf= str(soiltempf),
+			"soilmoisture= str(soilmoisture),
+			"leafwetness= str(leafwetness),
+			"solarradiation= str(solarradiation),
+			"UV= str(UV),
+			"visibility= str(visibility),
+			"indoortempf= str(indoortempf),
+			"indoorhumidity= str(indoorhumidity)}
 		try:
 			upload_url = WU_URL + "?" + urlencode(weather_data_wu)
 			response = urllib2.urlopen(upload_url)
@@ -108,20 +108,20 @@ while True:
 	if WOW_UPLOAD == True:
 		# write to WOW: http://wow.metoffice.gov.uk/support/dataformats#automatic
 		weather_data_wow = {
-			"siteid": WOW_STATION_ID,
-			"siteAuthenticationKey": WOW_STATION_KEY,
-			"dateutc": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-			"softwaretype": "custom",
-			"winddir": str(winddir),
-			"windspeedmph": str(windspeedmph),
-			"windgustmph": str(windgustmph),
-			"windgustdir": str(windgustdir),
-			"humidity": str(humidity),
-			"dewptf": str(dewptf),
-			"tempf": str(tempf),
-			"rainin": str(rainin),
-			"dailyrainin": str(dailyrainin),
-			"baromin": str(baromin)}
+			"siteid= WOW_STATION_ID,
+			"siteAuthenticationKey= WOW_STATION_KEY,
+			"dateutc= datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+			"softwaretype= "custom",
+			"winddir= str(winddir),
+			"windspeedmph= str(windspeedmph),
+			"windgustmph= str(windgustmph),
+			"windgustdir= str(windgustdir),
+			"humidity= str(humidity),
+			"dewptf= str(dewptf),
+			"tempf= str(tempf),
+			"rainin= str(rainin),
+			"dailyrainin= str(dailyrainin),
+			"baromin= str(baromin)}
 		try:
 			upload_url = WOW_URL + "?" + urlencode(weather_data_wow)
 			response = urllib2.urlopen(upload_url)
@@ -132,21 +132,8 @@ while True:
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
-		weather_data_db = {
-			"siteid": WOW_STATION_ID,
-			"siteAuthenticationKey": WOW_STATION_KEY,
-			"dateutc": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-			"softwaretype": "custom",
-			"winddir": str(winddir),
-			"windspeedmph": str(windspeedmph),
-			"windgustmph": str(windgustmph),
-			"windgustdir": str(windgustdir),
-			"humidity": str(humidity),
-			"dewptf": str(dewptf),
-			"tempf": str(tempf),
-			"rainin": str(rainin),
-			"dailyrainin": str(dailyrainin),
-			"baromin": str(baromin)}
+		#I GAVE UP HERE
+		#weather_data_db = "siteid=WOW_STATION_ID,siteAuthenticationKey=WOW_STATION_KEY,dateutc=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),softwaretype= "custom",winddir= str(winddir),windspeedmph= str(windspeedmph),windgustmph= str(windgustmph),windgustdir= str(windgustdir),humidity= str(humidity),dewptf= str(dewptf),tempf= str(tempf),rainin= str(rainin),dailyrainin= str(dailyrainin),baromin= str(baromin)}
 		try:
 			upload_url = DB_URL + " " + urlencode(weather_data_db) +"\""
 			response = urllib2.urlopen(upload_url)
@@ -156,7 +143,7 @@ while True:
 			print("DB Exception:", str(e))
 
 	# log something
-	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
+	print(str(datetime.now()),=:winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
 	print("weather_data_wu::",weather_data_wu)
 	print("weather_data_wow::",weather_data_wow)
 	print("weather_data_db::",weather_data_db)
