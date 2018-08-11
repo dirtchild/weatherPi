@@ -132,47 +132,35 @@ while True:
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
+		weather_data_db = {
+			"siteid": WOW_STATION_ID,
+			"siteAuthenticationKey": WOW_STATION_KEY,
+			"dateutc": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+			"softwaretype": "custom",
+			"winddir": str(winddir),
+			"windspeedmph": str(windspeedmph),
+			"windgustmph": str(windgustmph),
+			"windgustdir": str(windgustdir),
+			"humidity": str(humidity),
+			"dewptf": str(dewptf),
+			"tempf": str(tempf),
+			"rainin": str(rainin),
+			"dailyrainin": str(dailyrainin),
+			"baromin": str(baromin)}
 		try:
-			# DB connection
-			db = my.connect(host=db_host,user=db_user,passwd=db_pwd,db=db_db)
-			dbCursor = db.cursor()
-			sql = "insert into %s VALUES(Null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % \
-				(db_table,\
-				winddir,\
-				windspeedmph,\
-				windgustmph,\
-				windgustdir,\
-				windspdmph_avg2m,\
-				winddir_avg2m,\
-				windgustmph_10m,\
-				windgustdir_10m,\
-				humidity,\
-				dewptf,\
-				tempf,\
-				rainin,\
-				dailyrainin,\
-				baromin,\
-				weather,\
-				clouds,\
-				soiltempf,\
-				soilmoisture,\
-				leafwetness,\
-				solarradiation,\
-				UV,\
-				visibility,\
-				indoortempf,\
-				indoorhumidity)
-			number_of_rows = dbCursor.execute(sql)
-			db.commit()
-			# clean up after ourselves
-			db.close()
+			upload_url = DB_URL + " " + urlencode(weather_data_db) +"\""
+			response = urllib2.urlopen(upload_url)
+			html = response.read()
+			response.close()  # best practice to close the file
 		except Exception, e:
-			print("Mysql Exception:",str(e))
+			print("DB Exception:", str(e))
 
 	# log something
 	print(str(datetime.now()),"::winddir[",winddir,"]:windspeedmph[",windspeedmph,"]:windgustmph[",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
 	print("weather_data_wu::",weather_data_wu)
-    	print("weather_data_wow::",weather_data_wow)
+	print("weather_data_wow::",weather_data_wow)
+	print("weather_data_db::",weather_data_db)
+	print("DB_URL::",DB_URL)
 	sys.stdout.flush()
 
 	# wait on a bit
