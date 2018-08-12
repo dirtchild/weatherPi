@@ -20,6 +20,7 @@ import MySQLdb as my
 import time
 import sys
 import urllib2
+import requests
 
 # fire off our time-dependent sensors (wind speed, rainfall etc)
 wSpeed = eventSensor.eventSensor(W_SPD_GPIO, W_SPD_CALIBRATION, "wind speed events", "w_spd", "MPH", W_SPD_EVENTS_PERIOD)
@@ -131,28 +132,25 @@ while True:
 			print("WOW Exception:", str(e))
 
 	# write to our database
-#	if DATABASE_UPLOAD == True:
-##		weather_data_db = "siteid": WOW_STATION_ID,
-#			"siteAuthenticationKey": WOW_STATION_KEY,
-#			"dateutc": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-#			"softwaretype": "custom",
-#			"winddir": str(winddir),
-#			"windspeedmph": str(windspeedmph),
-#			"windgustmph": str(windgustmph),
-#			"windgustdir": str(windgustdir),
-#			"humidity": str(humidity),
-#			"dewptf": str(dewptf),
-#			"tempf": str(tempf),
-#			"rainin": str(rainin),
-#			"dailyrainin": str(dailyrainin),
-#			"baromin": str(baromin)}
-#		try:
-#			upload_url = DB_URL + " " + urlencode(weather_data_db) +"\""
-#			response = urllib2.urlopen(upload_url)
-#			html = response.read()
-#			response.close()  # best practice to close the file
-#		except Exception, e:
-#			print("DB Exception:", str(e))
+	if DATABASE_UPLOAD == True:
+		url_string = 'http://home:8086/write?db=home_environment'
+		data_string = "external,source=weatherStation " \
+				"winddir="+str(winddir)+"," \
+				"windspeedmph="+str(windspeedmph)+"," \
+				"windgustmph="+str(windgustmph)+"," \
+				"windgustdir="+str(windgustdir)+"," \
+				"hum="+str(humidity)+"," \
+				"dewptf="+str(dewptf)+"," \
+				"tempf="+str(tempf)+"," \
+				"rainin="+str(rainin)+"," \
+				"dailyrainin="+str(dailyrainin)+"," \
+				"baromin="+str(baromin)
+		try:
+			#DEBUG
+			print(url_string, data_string)
+			r = requests.post(url_string, data=data_string)
+		except Exception, e:
+			print("DB Exception:", str(e))
 
 	# log something
 #	print(str("winddir=",winddir,"]:windspeedmph=",windspeedmph,"]:windgustmph=",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
