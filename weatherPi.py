@@ -150,16 +150,14 @@ while True:
                         #DEBUG
 			#print(url_string, data_string)
 			r = requests.post(url_string_remote, data=data_string)
+                        print("weather_data_db::",url_string_remote, data_string)
 		except Exception, e:
 			print("DB Exception, logging locally:", str(e))
                         r = requests.post(url_string_local, data=data_string)
+                        print("weather_data_db::",url_string_local, data_string)
 
-	# DEBUG -- log something
-#	print(str("winddir=",winddir,"]:windspeedmph=",windspeedmph,"]:windgustmph=",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
-	#print("weather_data_wu::",weather_data_wu)
-	#print("weather_data_wow::",weather_data_wow)
-	#print("weather_data_db::",weather_data_db)
-	#print("DB_URL::",DB_URL)
+	print("weather_data_wu::",weather_data_wu)
+	print("weather_data_wow::",weather_data_wow)
 	sys.stdout.flush()
 
 	# wait on a bit
