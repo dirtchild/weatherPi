@@ -43,26 +43,26 @@ while True:
 	tempf = (mplTem.value + dhtTem.value) / 2 # average both internal temp readings
 	winddir = windDir.value
 	windspeedmph = windSpeedNow.value
-	windgustmph = "Null"
-	windgustdir = "Null"
+	windgustmph = "0"
+	windgustdir = "0"
 	windspdmph_avg2m = windSpdMph_avg2m.value
-	winddir_avg2m = "Null"
-	windgustmph_10m = "Null"
-	windgustdir_10m = "Null"
+	winddir_avg2m = "0"
+	windgustmph_10m = "0"
+	windgustdir_10m = "0"
 	humidity = dhtHum.value
 	dewptf = convertors.dewpointF(tempf, dhtHum.value)
 	rainin = convertors.mmToInches(rainIn.value)
 	baromin = mplPres.value
-	weather = "Null"
-	clouds = "Null"
-	soiltempf = "Null"
-	soilmoisture = "Null"
-	leafwetness = "Null"
+	weather = "0"
+	clouds = "0"
+	soiltempf = "0"
+	soilmoisture = "0"
+	leafwetness = "0"
 	solarradiation = solarradiation.value
 	UV = UV.value
-	visibility = "Null"
-	indoortempf = "Null"
-	indoorhumidity = "Null"
+	visibility = "0"
+	indoortempf = "0"
+	indoorhumidity = "0"
 
         sys.stdout.flush()
 
@@ -133,26 +133,28 @@ while True:
 
 	# write to our database
 	if DATABASE_UPLOAD == True:
-		url_string = 'http://home:8086/write?db=home_environment'
+		url_string_remote = 'http://home:8086/write?db=home_environment'
+                url_string_local = 'http://127.0.0.1:8086/write?db=weather_cache'
 		data_string = "external,source=weatherStation " \
 				"winddir="+str(winddir)+"," \
-				"windspeedmph="+str(windspeedmph)+"," \
+				"windspeedmph="+str(round(windspeedmph,2))+"," \
 				"windgustmph="+str(windgustmph)+"," \
 				"windgustdir="+str(windgustdir)+"," \
 				"hum="+str(humidity)+"," \
-				"dewptf="+str(dewptf)+"," \
-				"tempf="+str(tempf)+"," \
+				"dewptf="+str(round(convertors.f_to_c(dewptf),2))+"," \
+				"tem="+str(convertors.f_to_c(tempf))+"," \
 				"rainin="+str(rainin)+"," \
 				"dailyrainin="+str(dailyrainin)+"," \
-				"baromin="+str(baromin)
+				"baromin="+str(round(baromin,2))
 		try:
-			#DEBUG
-			print(url_string, data_string)
-			r = requests.post(url_string, data=data_string)
+                        #DEBUG
+			#print(url_string, data_string)
+			r = requests.post(url_string_remote, data=data_string)
 		except Exception, e:
-			print("DB Exception:", str(e))
+			print("DB Exception, logging locally:", str(e))
+                        r = requests.post(url_string_local, data=data_string)
 
-	# log something
+	# DEBUG -- log something
 #	print(str("winddir=",winddir,"]:windspeedmph=",windspeedmph,"]:windgustmph=",windgustmph,"]:windgustdir[",windgustdir,"]:windspdmph_avg2m[",windspdmph_avg2m,"]:winddir_avg2m[",winddir_avg2m,"]:windgustmph_10m[",windgustmph_10m,"]:windgustdir_10m[",windgustdir_10m,"]:humidity[",humidity,"]:dewptf[",dewptf,"]:tempf[",tempf,"]:rainin[",rainin,"]:dailyrainin[",dailyrainin,"]:baromin[",baromin,"]:solarradiation[",solarradiation,"]:UV[",UV,"]:)")
 	#print("weather_data_wu::",weather_data_wu)
 	#print("weather_data_wow::",weather_data_wow)
