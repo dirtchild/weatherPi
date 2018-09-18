@@ -12,7 +12,7 @@ if [ $? != 0 ]; then
     ifdown --force wlan0
     sleep 5
     ifup wlan0
-    echo "wlan0 reconnected at `date`"
+    echo "[REAPER] wlan0 reconnected at `date`"
 else
     # we have wifi. see if there's anythign that needs xferring
     influx_inspect export -datadir /var/lib/influxdb/data -waldir /var/lib/influxdb/wal -out "$exportFile" -database weather_cache
@@ -20,11 +20,13 @@ else
 
     # if we have anything
     if [ -s $exportFile.trimmed ]; then
-    	# clear the DB
- 	curl -i -XPOST "http://127.0.0.1:8086/write?db=weather_cache&q=DROP+MEASUREMENT+external"
-
-    	# send it to the remote
-	curl -i -XPOST "http://127.0.0.1:8086/write?db=weather_cache" --data-binary @$exportFile.trimmed
+	echo "[REAPER] data in DB, sending"
+    	# send it to the remote if it's there
+	if curl -i -XPOST "http://home:8086/write?db=home_environment" --data-binary @$exportFile.trimmed; then
+		echo "[REAPER] data in DB, sent, clearing local DB"
+    	 	# clear the DB
+ 		curl -i -XPOST "http://127.0.0.1:8086/write?db=weather_cache&q=DROP+MEASUREMENT+external"
+	fi
     fi
 
 fi

@@ -144,6 +144,7 @@ while True:
 				"dewptf="+str(round(convertors.f_to_c(dewptf),2))+"," \
 				"tem="+str(convertors.f_to_c(tempf))+"," \
 				"rainin="+str(rainin)+"," \
+                                "uv="+str(UV)+","\
 				"dailyrainin="+str(dailyrainin)+"," \
 				"baromin="+str(round(baromin,2))
 		try:
