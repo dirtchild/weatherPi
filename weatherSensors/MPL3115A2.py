@@ -11,6 +11,7 @@
 #       * https://www.domoticz.com/forum/viewtopic.php?t=839
 # RETURNS: two objects for humidity and temperature
 # CREATED: 2017-07-18
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 from SensorData import SensorReading

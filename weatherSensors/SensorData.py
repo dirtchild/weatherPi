@@ -10,6 +10,7 @@
 ## * timeStamp: when it was created/taken. timestamp in seconds since epoch
 ##
 ## CREATED:  2017-07-17
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 ## MODIFIED: see https://github.com/dirtchild/weatherPi
 ##
 

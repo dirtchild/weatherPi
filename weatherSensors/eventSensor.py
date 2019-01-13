@@ -6,6 +6,7 @@
 #		* http://wiki.wunderground.com/index.php/PWS_-_Upload_Protocol
 # RETURNS: SensorData.SensorReading object
 # CREATED: 2017-08-02
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 import RPi.GPIO as GPIO

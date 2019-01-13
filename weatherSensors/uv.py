@@ -10,6 +10,7 @@
 #   * Adafruit_ADS1x15 library examples
 # RETURNS: two objects for humidity and temperature
 # CREATED: 2017-08-02
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 from SensorData import SensorReading

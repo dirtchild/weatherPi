@@ -11,6 +11,7 @@
 #		* https://github.com/adafruit/Adafruit_Python_DHT/blob/master/examples/AdafruitDHT.py
 # RETURNS: two objects for humidity and temperature
 # CREATED: 2017-07-18
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 # MODIFIED: see https://github.com/dirtchild/weatherPi
 
 import Adafruit_DHT

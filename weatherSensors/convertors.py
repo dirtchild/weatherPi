@@ -1,6 +1,6 @@
 # various things to convert between things
 # CREATED: 2017-07-18
-# https://github.com/dirtchild/weatherPi
+# ORIGINAL SOURCE: https://github.com/dirtchild/weatherPi [please do not remove this line]
 # a lot of this is taken from the following, and modified to suit:
 #	https://sourceforge.net/projects/meta-tools/files/pyweather/0.7.0/
 
